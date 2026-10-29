@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--
+  Демо-версия сайта для кофейни-кондитерской Cake.Time (Одинцово).
+  Разработка — Денис Стрепенюк, +7 977 393-80-33.
+  Сделано по открытым данным: Яндекс Карты (меню, фото, отзывы).
+-->
+<title>Cake.Time — время для кофе и тортика · Одинцово (демо)</title>
+<meta name="description" content="Кофейня-кондитерская Cake.Time в Одинцово: завтраки, обеды, десерты ручной работы, бенто-торты и торты на заказ, детская зона. Бул. Любы Новосёловой, 18.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Денис Стрепенюк, +7 977 393-80-33">
+<meta name="theme-color" content="#A3164F">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Cake.Time — новый сайт (демо-версия)">
+<meta property="og:description" content="Живые часы работы, меню с ценами, конструктор бенто-торта с заявкой в WhatsApp. Разработка — Денис Стрепенюк.">
+<meta property="og:image" content="https://mafssadd.github.io/caketime/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23fff' stroke='%2325318F' stroke-width='5'/%3E%3Cpath d='M32 32V14M32 32l11 7' stroke='%23A3164F' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@200;300;400;600;700;800&family=Pangolin&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#A3164F; --wall-deep:#860F3F; --wall-soft:#B91F60;
+  --cobalt:#25318F; --cobalt-deep:#1A2370; --cobalt-bright:#3A50DA;
+  --sky:#74C6EE; --sky-deep:#3E9FD3;
+  --neon:#FF5FB4; --neon-soft:#FFD6EB; --blush:#FFE9F2;
+  --paper:#FFFFFF; --grout:#F4BCD3;
+  --ink:#2A1033; --ink-2:#64506B;
+  --gold:#E8C35E; --lav:#8E78F0; --mint:#7ED9B4;
+  --r:18px;
+  --f-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-hand:'Pangolin','Nunito',cursive;
+  --f-cake:'Caveat','Pangolin',cursive;
+  --bar-h:0px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--wall);color:#fff;font:400 17px/1.55 var(--f-body);overflow-x:hidden;padding-bottom:var(--bar-h)}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- водяные знаки ---------- */
+.wm-layer{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='430'%3E%3Ctext x='340' y='222' text-anchor='middle' transform='rotate(-24 340 215)' font-family='Arial,sans-serif' font-size='22' font-weight='700' letter-spacing='3' fill='%23ffffff'%3E%D0%94%D0%95%D0%9C%D0%9E-%D0%92%D0%95%D0%A0%D0%A1%D0%98%D0%AF %E2%80%94 %D0%94%D0%95%D0%9D%D0%98%D0%A1 %D0%A1%D0%A2%D0%A0%D0%95%D0%9F%D0%95%D0%9D%D0%AE%D0%9A%3C/text%3E%3C/svg%3E");
+  background-size:680px 430px}
+.seal{position:fixed;left:18px;bottom:18px;z-index:61;width:118px;height:118px;pointer-events:none;opacity:.8;transform:rotate(-12deg);display:none}
+@media (min-width:1100px){.seal{display:block}}
+.ph{position:relative;margin:0;overflow:hidden;background:var(--wall-deep)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph::after{content:"демо — Д. Стрепенюк";position:absolute;right:8px;bottom:6px;font:700 10px/1 var(--f-body);letter-spacing:.06em;color:#fff;opacity:.72;text-shadow:0 1px 3px rgba(0,0,0,.6);pointer-events:none}
+
+/* ---------- плашка демо ---------- */
+.demo-bar{position:relative;z-index:70;background:var(--cobalt-deep);color:#E8EBFF;font-size:13.5px;line-height:1.35}
+.demo-bar .wrap{display:flex;gap:10px 18px;align-items:center;justify-content:space-between;padding:9px 0;flex-wrap:wrap}
+.demo-bar b{color:#fff}
+.demo-bar a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+.owner-toggle{display:inline-flex;align-items:center;gap:9px;background:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 12px 5px 6px;color:#fff;font-size:13px;font-weight:700}
+.owner-toggle .sw{width:34px;height:20px;border-radius:999px;background:rgba(255,255,255,.25);position:relative;transition:background .2s}
+.owner-toggle .sw::after{content:"";position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s}
+body.owner .owner-toggle .sw{background:var(--neon)}
+body.owner .owner-toggle .sw::after{transform:translateX(14px)}
+
+/* ---------- шапка ---------- */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(134,15,63,.9);backdrop-filter:saturate(1.3) blur(10px);-webkit-backdrop-filter:saturate(1.3) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.hdr .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 27px/1 var(--f-hand);color:#fff;white-space:nowrap}
+.logo svg{flex:none}
+.logo small{font:700 11px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--neon-soft);opacity:.85;margin-left:2px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 12px;border-radius:999px;color:#FFE3F0}
+.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.hdr-call{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--wall);text-decoration:none;font-weight:800;font-size:15px;padding:10px 16px;border-radius:999px;white-space:nowrap}
+@media (max-width:980px){.nav{display:none}.hdr-call{margin-left:auto}}
+@media (max-width:420px){.hdr-call span{display:none}.hdr-call{padding:10px 12px}.logo small{display:none}}
+
+/* ---------- общие секции ---------- */
+.sec{position:relative;padding:clamp(64px,9vw,118px) 0;isolation:isolate}
+.sec::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 15% 0%,rgba(255,200,230,.13),transparent 70%),radial-gradient(ellipse 50% 40% at 90% 100%,rgba(0,0,0,.14),transparent 70%)}
+.sec--deep{background:var(--wall-deep)}
+.sec--cobalt{background:var(--cobalt)}
+.sec--cobalt::before{background:radial-gradient(ellipse 60% 55% at 85% 0%,rgba(140,170,255,.18),transparent 70%),radial-gradient(ellipse 50% 40% at 0% 100%,rgba(0,0,0,.18),transparent 70%)}
+.kicker{display:inline-flex;align-items:center;gap:10px;font:800 13px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--neon-soft);margin-bottom:14px}
+.sec--cobalt .kicker{color:#C9D3FF}
+.kicker svg{flex:none}
+h1,h2,h3{margin:0;font-weight:400}
+h2{font:400 clamp(34px,5.2vw,60px)/1.04 var(--f-hand);letter-spacing:-.005em;max-width:16ch}
+.lead{font-size:clamp(17px,1.6vw,19.5px);color:#FFE6F1;max-width:60ch;margin:16px 0 0}
+.sec--cobalt .lead{color:#DCE2FF}
+.sec-head{margin-bottom:clamp(30px,4vw,48px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;padding:14px 22px;font-weight:800;font-size:16px;text-decoration:none;line-height:1.1;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn--white{background:#fff;color:var(--wall)}
+.btn--neon{background:var(--neon);color:#fff;box-shadow:0 8px 24px rgba(255,95,180,.35)}
+.btn--cobalt{background:var(--cobalt-bright);color:#fff}
+.btn--ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.btn--wa{background:#25D366;color:#073B1C}
+.btn svg{flex:none}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border-radius:999px;padding:7px 13px;font-weight:700;font-size:14px;color:#fff}
+
+/* ---------- заметки владельца ---------- */
+.owner-note{display:none;position:relative;background:#FFF6D9;color:#3B2A12;border-radius:6px 6px 16px 6px;padding:16px 18px 16px 52px;margin:0 0 28px;max-width:640px;font-size:15.5px;line-height:1.5;box-shadow:0 10px 30px rgba(40,0,20,.25);transform:rotate(-.6deg)}
+.owner-note::before{content:"₽";position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:50%;background:var(--neon);color:#fff;font:800 15px/26px var(--f-body);text-align:center}
+.owner-note b{color:#8A1043}
+.owner-note .on-t{display:block;font:800 11.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:#A0742A;margin-bottom:6px}
+body.owner .owner-note{display:block}
+
+/* ---------- первый экран ---------- */
+.hero{padding:clamp(28px,4vw,56px) 0 clamp(56px,7vw,96px);overflow:hidden}
+.hero::before{background:radial-gradient(ellipse 45% 45% at 22% 18%,rgba(255,120,190,.30),transparent 70%),radial-gradient(ellipse 40% 50% at 85% 10%,rgba(255,220,240,.12),transparent 70%),radial-gradient(ellipse 80% 50% at 50% 110%,rgba(60,0,30,.35),transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,5vw,72px);align-items:center}
+.neon{margin:0;text-align:center;font:200 clamp(44px,6.2vw,90px)/.98 var(--f-body);text-transform:uppercase;letter-spacing:.035em;color:#FFEAF5;
+  text-shadow:0 0 2px #fff,0 0 10px rgba(255,140,205,.95),0 0 26px rgba(255,70,170,.85),0 0 60px rgba(255,40,150,.55)}
+.neon span{display:block}
+.neon .sm{font-size:.62em;line-height:1.15}
+.neon-wrap{position:relative;padding:clamp(18px,3vw,34px) clamp(10px,2vw,24px)}
+@media (prefers-reduced-motion:no-preference){.neon{animation:flick 2.4s ease-out 1 both}}
+@keyframes flick{0%{opacity:.15}6%{opacity:.9}8%{opacity:.3}11%{opacity:1}14%{opacity:.55}18%,100%{opacity:1}}
+.hero-sub{text-align:center;margin:18px auto 0;font-size:clamp(17px,1.7vw,20px);color:#FFE3EF;max-width:34ch}
+.hero-sub b{color:#fff}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.tinsel{position:absolute;top:0;width:96px;height:200px;pointer-events:none;opacity:.75;transform-origin:50% 0;z-index:0;
+  background:repeating-linear-gradient(90deg,transparent 0 2px,rgba(255,229,150,.95) 2px 3px,rgba(196,148,48,.85) 3px 4px,transparent 4px 7px);
+  -webkit-mask:linear-gradient(to bottom,#000 55%,transparent);mask:linear-gradient(to bottom,#000 55%,transparent)}
+.tinsel--a{left:3%;height:170px}.tinsel--b{left:calc(3% + 70px);height:120px;width:60px}.tinsel--c{right:4%;height:190px}
+@media (prefers-reduced-motion:no-preference){.tinsel{animation:sway 7s ease-in-out infinite alternate}.tinsel--b{animation-duration:9s}.tinsel--c{animation-duration:8s;animation-delay:-3s}}
+@keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+@media (max-width:860px){.tinsel{display:none}}
+
+.hero-side{position:relative;display:grid;gap:18px}
+.frame{position:relative;border:14px solid #FFC7E1;border-radius:26px;box-shadow:0 24px 60px rgba(50,0,25,.45)}
+.frame::before{content:"";position:absolute;inset:-22px;border:12px dotted #FFC7E1;border-radius:36px;pointer-events:none}
+.frame .ph{border-radius:12px;aspect-ratio:4/4.3}
+.clock-card{position:relative;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:#fff;color:var(--ink);border-radius:22px;padding:16px 20px 16px 16px;box-shadow:0 18px 40px rgba(50,0,25,.35)}
+.clock-card svg{width:104px;height:104px}
+.clock-now{font:400 26px/1.1 var(--f-hand);color:var(--wall)}
+.clock-status{font-weight:800;font-size:16px;margin-top:4px;display:flex;align-items:center;gap:8px}
+.clock-status::before{content:"";width:10px;height:10px;border-radius:50%;background:#20B26B;box-shadow:0 0 0 4px rgba(32,178,107,.18)}
+.clock-status.closed::before{background:#E0475B;box-shadow:0 0 0 4px rgba(224,71,91,.16)}
+.clock-hint{font-size:14.5px;color:var(--ink-2);margin-top:3px}
+.hours-mini{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap}
+.hours-mini span{font-size:12.5px;font-weight:700;padding:3px 7px;border-radius:7px;background:#F6EDF2;color:var(--ink-2)}
+.hours-mini span.today{background:var(--wall);color:#fff}
+.hero-side .clock-card{margin:-56px 12px 0}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-side{max-width:520px;margin-inline:auto;width:100%}}
+@media (max-width:480px){.clock-card{grid-template-columns:1fr;text-align:center;justify-items:center}.hero-side .clock-card{margin:-48px 4px 0}.hours-mini{justify-content:center}.clock-status{justify-content:center}}
+
+/* ---------- меню-доски ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tab{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:11px 18px;font-weight:800;font-size:15.5px}
+.tab[aria-selected="true"]{background:#fff;color:var(--wall)}
+.board{position:relative;background:#fff;color:var(--ink);padding:clamp(24px,3.6vw,44px) clamp(18px,3.6vw,46px);border:12px solid;border-image:linear-gradient(135deg,#F7F7F9,#A7ABB4 28%,#EEF0F4 50%,#9A9EA8 72%,#F5F5F7) 1;box-shadow:0 26px 60px rgba(40,0,20,.4),inset 0 0 0 1px #eee;
+  background-image:radial-gradient(circle at 8% 14%,rgba(233,30,99,.22) 0 5px,transparent 6px),radial-gradient(circle at 13% 19%,rgba(233,30,99,.16) 0 2px,transparent 3px),radial-gradient(circle at 91% 8%,rgba(58,80,218,.18) 0 6px,transparent 7px),radial-gradient(circle at 86% 13%,rgba(58,80,218,.14) 0 2.5px,transparent 3.5px),radial-gradient(circle at 95% 62%,rgba(233,30,99,.17) 0 4px,transparent 5px),radial-gradient(circle at 4% 78%,rgba(58,80,218,.14) 0 5px,transparent 6px),radial-gradient(circle at 52% 97%,rgba(233,30,99,.14) 0 3px,transparent 4px),radial-gradient(circle at 70% 4%,rgba(233,30,99,.12) 0 2px,transparent 3px)}
+.board h3{font:400 clamp(26px,3.2vw,36px)/1.1 var(--f-hand);color:var(--wall);margin-bottom:18px}
+.board h3 em{font-style:normal;color:var(--cobalt-bright)}
+.board-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 44px}
+@media (max-width:760px){.board-grid{grid-template-columns:1fr}}
+.mi{padding:10px 0;border-bottom:1px dashed #EBD7E1}
+.mi:last-child{border-bottom:0}
+.mi-row{display:flex;align-items:baseline;gap:8px;font:400 19px/1.2 var(--f-hand);color:var(--cobalt)}
+.mi:nth-child(3n+2) .mi-row{color:var(--wall)}
+.mi-row .dots{flex:1;border-bottom:2px dotted #C9B9C9;transform:translateY(-4px);min-width:20px}
+.mi-row .pr{color:var(--ink);white-space:nowrap}
+.mi p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.mi .badge{display:inline-block;font:800 10.5px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;background:var(--blush);color:var(--wall);padding:4px 7px;border-radius:6px;margin-left:6px;transform:translateY(-2px)}
+.board-sub{font:400 21px/1.2 var(--f-hand);color:var(--wall);margin:22px 0 4px;grid-column:1/-1}
+.board-sub:first-child{margin-top:0}
+.board-note{margin:22px 0 0;font-size:13.5px;color:var(--ink-2)}
+.menu-photos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.menu-photos .ph{aspect-ratio:1;border-radius:14px;cursor:zoom-in}
+@media (max-width:760px){.menu-photos{grid-template-columns:repeat(2,1fr)}}
+[role="tabpanel"][hidden]{display:none}
+
+/* ---------- напитки ---------- */
+.drinks{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(22px,4vw,48px);align-items:start}
+@media (max-width:900px){.drinks{grid-template-columns:1fr}}
+.sizes{display:flex;gap:8px;margin:0 0 16px}
+.size{border:2px solid #E4D6E0;background:#fff;color:var(--ink);border-radius:12px;padding:8px 12px;font-weight:800;font-size:14.5px;min-width:74px}
+.size[aria-pressed="true"]{border-color:var(--cobalt-bright);background:var(--cobalt-bright);color:#fff}
+.size:disabled{opacity:.35;cursor:not-allowed}
+.dtable{width:100%;border-collapse:collapse;font:400 18px/1.2 var(--f-hand)}
+.dtable th{font:800 12px/1 var(--f-body);letter-spacing:.08em;color:var(--ink-2);text-align:right;padding:0 6px 10px;white-space:nowrap}
+.dtable th:first-child{text-align:left}
+.dtable td{padding:9px 6px;text-align:right;color:var(--ink);border-top:1px dashed #EEDFE7;white-space:nowrap}
+.dtable td:first-child{text-align:left;color:var(--cobalt);white-space:normal}
+.dtable tr:nth-child(odd) td:first-child{color:var(--wall)}
+.dtable tbody tr{cursor:pointer;transition:background .15s}
+.dtable tbody tr:hover{background:#FFF3F8}
+.dtable tbody tr.sel{background:#EEF1FF}
+.dtable tbody tr.sel td:first-child::before{content:"▸ ";color:var(--cobalt-bright)}
+.dtable td.col-on{background:rgba(58,80,218,.07);font-weight:400}
+.dtable td.one{text-align:center;color:var(--ink-2)}
+.dtable .na{color:#D2C4CE}
+.extras{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.extra{display:inline-flex;align-items:center;gap:7px;border:2px solid #EADAE3;border-radius:999px;padding:7px 12px;font-weight:700;font-size:14px;background:#fff;color:var(--ink);user-select:none}
+.extra input{accent-color:var(--wall);margin:0}
+.extra:has(input:checked){border-color:var(--wall);background:var(--blush)}
+.cup-panel{position:sticky;top:84px;background:#fff;color:var(--ink);border-radius:26px;padding:24px;box-shadow:0 26px 60px rgba(10,10,60,.45);text-align:center}
+.cup-stage{height:250px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:6px}
+.cup{position:relative;width:140px;transition:height .35s cubic-bezier(.3,1.4,.5,1),width .35s}
+.cup .body{position:absolute;inset:14px 0 0 0;background:linear-gradient(90deg,#5BB7E6,#86D0F2 40%,#62BBE8);clip-path:polygon(4% 0,96% 0,84% 100%,16% 100%)}
+.cup .lid{position:absolute;left:-4%;right:-4%;top:0;height:18px;border-radius:8px 8px 4px 4px;background:linear-gradient(#fff,#E9EEF3);box-shadow:0 2px 0 rgba(0,0,0,.06)}
+.cup .stamp{position:absolute;left:50%;top:55%;width:66px;height:66px;margin:-33px 0 0 -33px;border:2.5px solid rgba(29,63,160,.75);border-radius:50%;display:grid;place-items:center;text-align:center;font:400 11.5px/1.05 var(--f-hand);color:rgba(29,63,160,.85);transform:rotate(-8deg)}
+.cup-name{font:400 26px/1.1 var(--f-hand);color:var(--wall);margin:4px 0 2px}
+.cup-meta{font-size:14.5px;color:var(--ink-2);min-height:22px}
+.cup-total{font:800 34px/1 var(--f-body);color:var(--ink);margin:12px 0 4px;position:relative;display:inline-block}
+.cup-panel>.calc-stamp{right:18px;top:20px}
+@media (max-width:900px){.cup-panel{position:relative;top:0}}
+.calc-stamp{position:absolute;border:2px solid rgba(163,22,79,.55);color:rgba(163,22,79,.75);font:800 9px/1.15 var(--f-body);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border-radius:6px;transform:rotate(9deg);text-align:center;pointer-events:none}
+.pickup{display:flex;gap:8px;align-items:center;justify-content:center;margin:14px 0 14px;font-weight:700;font-size:15px}
+.pickup select{border:2px solid #E4D6E0;border-radius:10px;padding:7px 10px;background:#fff;color:var(--ink);font-weight:700}
+.cup-panel .btn{width:100%}
+.tiny{font-size:12.5px;color:var(--ink-2);margin:10px 0 0}
+
+/* ---------- витрина ---------- */
+.case{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:10px solid var(--cobalt);border-radius:8px;padding:clamp(14px,2.4vw,26px) clamp(12px,2.4vw,26px) 0;box-shadow:0 30px 70px rgba(40,0,20,.45),inset 0 0 60px rgba(255,255,255,.06)}
+.case::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 38%,transparent 46%);pointer-events:none}
+.shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2vw,22px);padding-bottom:clamp(30px,3vw,40px);margin-bottom:clamp(16px,2vw,24px);position:relative}
+.shelf::after{content:"";position:absolute;left:-12px;right:-12px;bottom:0;height:10px;background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.12));box-shadow:0 8px 16px rgba(0,0,0,.25);border-radius:2px}
+@media (max-width:760px){.shelf{grid-template-columns:repeat(2,1fr);row-gap:34px}.tag{font-size:14px;left:4px;padding:5px 9px 5px 17px}}
+.item{position:relative}
+.item .ph{aspect-ratio:1;border-radius:50% 50% 14px 14px / 42% 42% 14px 14px;cursor:zoom-in;box-shadow:0 10px 18px rgba(0,0,0,.28)}
+.tag{position:absolute;left:8px;bottom:-16px;z-index:2;background:#fff;color:var(--ink);font:400 15.5px/1.15 var(--f-hand);padding:6px 11px 6px 20px;border-radius:5px 12px 12px 5px;transform:rotate(-3deg);box-shadow:0 4px 10px rgba(0,0,0,.25);max-width:calc(100% - 4px)}
+.item:nth-child(even) .tag{transform:rotate(2.5deg)}
+.tag::before{content:"";position:absolute;left:7px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--wall)}
+.tag b{display:block;font-family:var(--f-body);font-weight:800;font-size:14px;color:var(--wall)}
+.tag i{display:block;font-style:normal;color:var(--ink-2);font-size:12.5px;font-family:var(--f-body);font-weight:600}
+.case-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:28px;background:rgba(255,255,255,.1);border-radius:20px;padding:18px 20px}
+.case-cta p{margin:0;max-width:52ch;color:#FFE6F1}
+.eskimo{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.eskimo span{font-size:13px;font-weight:700;background:rgba(255,255,255,.14);border-radius:999px;padding:4px 10px}
+
+/* ---------- бенто ---------- */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,52px);align-items:start}
+@media (max-width:920px){.bento{grid-template-columns:1fr}}
+.bento-stage{position:sticky;top:84px;background:radial-gradient(circle at 50% 40%,#FFE3F0,#FFC2DD 75%);border-radius:28px;padding:18px;box-shadow:0 26px 60px rgba(10,10,60,.45)}
+@media (max-width:920px){
+  .bento-stage{top:64px;z-index:5;display:grid;grid-template-columns:clamp(130px,40vw,220px) 1fr;gap:10px;align-items:center;padding:10px 12px;border-radius:22px}
+  .bento-price{flex-direction:column;align-items:flex-start;padding:0}
+  .bento-price .sum{font-size:27px}
+  .bento-price .sum small{font-size:12px}
+}
+.bento-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1}
+.bento-price{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;color:var(--ink);padding:6px 6px 2px;position:relative}
+.bento-price .sum{font:800 34px/1 var(--f-body)}
+.bento-price .sum small{display:block;font:700 12.5px/1.3 var(--f-body);color:var(--ink-2);margin-top:6px;max-width:30ch}
+.bento-price .calc-stamp{position:static;transform:rotate(-6deg)}
+.ctl{background:#fff;color:var(--ink);border-radius:26px;padding:clamp(18px,3vw,30px);box-shadow:0 26px 60px rgba(10,10,60,.35)}
+.ctl fieldset{border:0;margin:0 0 20px;padding:0}
+.ctl legend{font:400 22px/1.1 var(--f-hand);color:var(--cobalt);margin-bottom:10px;padding:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;gap:7px;border:2px solid #E7DAE2;border-radius:999px;padding:8px 13px;font-weight:700;font-size:14.5px;background:#fff;transition:all .15s}
+.opt input:checked+span{border-color:var(--wall);background:var(--blush);color:var(--wall)}
+.opt input:focus-visible+span{outline:3px solid var(--sky);outline-offset:2px}
+.sw-c{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.opt--color span{padding:6px 12px 6px 7px}
+.ins{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ins input,.ctl input[type=date]{width:100%;border:2px solid #E7DAE2;border-radius:12px;padding:9px 13px;font:700 23px/1.2 var(--f-cake);background:#FFFBFD;color:var(--ink)}
+.ctl input[type=date]{font:700 15px/1.2 var(--f-body)}
+@media (max-width:420px){.ins{grid-template-columns:1fr}}
+.ctl .acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.ctl .acts .btn{padding:13px 14px;font-size:15px}
+.ctl .acts .btn--wa{grid-column:1/-1;font-size:16.5px;padding:16px}
+@media (max-width:420px){.ctl .acts{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:calc(var(--bar-h) + 24px);transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;font-size:15px;z-index:90;transition:all .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- торты ---------- */
+.cakes{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(22px,4vw,48px);align-items:start}
+@media (max-width:920px){.cakes{grid-template-columns:1fr}}
+.cake-gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(120px,13vw,170px);gap:12px;grid-auto-flow:dense}
+.cake-gal .ph{border-radius:16px;cursor:zoom-in}
+.cake-gal .ph:nth-child(1){grid-row:span 2;grid-column:span 2}
+.cake-gal .ph:nth-child(4){grid-column:span 2}
+@media (max-width:600px){.cake-gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}}
+.calc{background:#fff;color:var(--ink);border-radius:26px;padding:clamp(20px,3vw,30px);box-shadow:0 26px 60px rgba(40,0,20,.4)}
+.calc h3{font:400 28px/1.1 var(--f-hand);color:var(--wall);margin-bottom:6px}
+.calc label.lbl{display:flex;justify-content:space-between;font-weight:800;margin:18px 0 8px}
+.calc input[type=range]{width:100%;accent-color:var(--wall);height:28px}
+.calc .res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.calc .res div{background:#FFF1F7;border-radius:16px;padding:14px}
+.calc .res b{display:block;font:800 26px/1.1 var(--f-body);color:var(--ink)}
+.calc .res span{font-size:13px;color:var(--ink-2);font-weight:700}
+.calc .res-wrap{position:relative}
+.calc .res-wrap .calc-stamp{right:6px;top:-8px}
+.calc .btn{width:100%}
+.price-list{list-style:none;padding:0;margin:14px 0 0;font-size:15px}
+.price-list li{display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed #EEDDE6}
+.price-list li span:first-child{flex:1}
+.price-list b{white-space:nowrap}
+
+/* ---------- для своих ---------- */
+.own{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:920px){.own{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.own{grid-template-columns:1fr}}
+.card{background:#fff;color:var(--ink);border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(10,10,60,.35);display:flex;flex-direction:column}
+.card .ph{aspect-ratio:4/3;cursor:zoom-in}
+.card .in{padding:18px 20px 22px}
+.card h3{font:400 25px/1.1 var(--f-hand);color:var(--wall);margin-bottom:8px}
+.card p{margin:0;font-size:15.5px;color:var(--ink-2)}
+.card ul{margin:10px 0 0;padding:0;list-style:none;font-size:15px}
+.card ul li{display:flex;gap:8px;padding:5px 0;border-bottom:1px dashed #EEDDE6}
+.card ul li span:first-child{flex:1}
+.card--wide{grid-column:span 2}
+@media (max-width:600px){.card--wide{grid-column:auto}}
+.card--wide .two{display:grid;grid-template-columns:1fr 1fr}
+.card--wide .two .ph{aspect-ratio:auto;min-height:100%}
+@media (max-width:600px){.card--wide .two{grid-template-columns:1fr}.card--wide .two .ph{aspect-ratio:4/3}}
+
+/* ---------- отзывы ---------- */
+.reviews{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(22px,4vw,48px);align-items:start}
+@media (max-width:920px){.reviews{grid-template-columns:1fr}}
+.receipt-wrap{max-width:380px;filter:drop-shadow(0 22px 26px rgba(40,0,20,.45));transform:rotate(-1.5deg)}
+.receipt{position:relative;background:#FFFDF8;color:#2B2330;font:600 15px/1.5 'Courier New',monospace;padding:26px 24px 34px;
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/18px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/18px 100%}
+.receipt h3{font:800 16px/1.2 'Courier New',monospace;text-align:center;letter-spacing:.06em}
+.receipt .c{text-align:center;font-size:12.5px;color:#6D6170;margin:2px 0 12px}
+.receipt .ln{display:flex;gap:6px}
+.receipt .ln span:nth-child(2){flex:1;border-bottom:2px dotted #CFC6CE;transform:translateY(-5px)}
+.receipt hr{border:0;border-top:2px dashed #CFC6CE;margin:12px 0}
+.receipt .tot{font-size:18px;font-weight:800}
+.receipt .star{color:#E0A100}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:600px){.quotes{grid-template-columns:1fr}}
+.q{background:rgba(255,255,255,.1);border-radius:20px;padding:18px 20px;margin:0}
+.q p{margin:0;font:400 20px/1.3 var(--f-hand);color:#fff}
+.q footer{margin-top:10px;font-size:13.5px;color:#FFD3E6;font-weight:700}
+.badge-gp{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);border-radius:16px;padding:10px 16px 10px 10px;font-weight:800;margin-top:22px}
+.badge-gp i{width:38px;height:38px;border-radius:50%;background:#FFCC00;display:grid;place-items:center;font-style:normal;font-size:20px}
+
+/* ---------- контакты ---------- */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,48px);align-items:start}
+@media (max-width:920px){.visit{grid-template-columns:1fr}}
+.addr{font:400 clamp(28px,3.6vw,40px)/1.1 var(--f-hand);margin:0 0 6px}
+.hours{width:100%;max-width:420px;border-collapse:collapse;margin:18px 0 6px;font-size:16px}
+.hours td{padding:8px 10px;border-top:1px solid rgba(255,255,255,.14)}
+.hours td:last-child{text-align:right;font-weight:800}
+.hours tr.today td{background:rgba(255,255,255,.14)}
+.hours tr.today td:first-child{border-radius:10px 0 0 10px}
+.hours tr.today td:last-child{border-radius:0 10px 10px 0}
+.contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.map-box{position:relative;border-radius:24px;overflow:hidden;background:var(--cobalt-deep);aspect-ratio:4/3.2;box-shadow:0 26px 60px rgba(0,0,40,.45)}
+.map-box .ph{position:absolute;inset:0}
+.map-box .ph img{filter:saturate(1.05) brightness(.72)}
+.map-load{position:absolute;inset:auto 18px 18px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:rgba(255,255,255,.95);color:var(--ink);border-radius:18px;padding:14px 16px;z-index:2}
+.map-load p{margin:0;font-size:14.5px;font-weight:700;max-width:30ch}
+.map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.look{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.look .ph{aspect-ratio:1;border-radius:16px;cursor:zoom-in}
+.look figcaption{display:none}
+
+/* ---------- подвал ---------- */
+.ftr{background:#2A0B1E;color:#F3D9E6;padding:46px 0 120px;font-size:15px}
+.ftr .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:28px}
+@media (max-width:760px){.ftr .wrap{grid-template-columns:1fr}}
+.ftr .demo-box{border:1.5px dashed rgba(255,255,255,.3);border-radius:18px;padding:18px 20px}
+.ftr .demo-box b{color:#fff}
+.ftr a{color:#fff}
+.ftr .soc{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+/* ---------- мобильная панель ---------- */
+.mbar{display:none}
+@media (max-width:760px){
+  :root{--bar-h:72px}
+  .mbar{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:55;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:rgba(42,11,30,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .mbar a{display:flex;align-items:center;justify-content:center;gap:7px;border-radius:14px;padding:12px 6px;font-weight:800;font-size:14.5px;text-decoration:none}
+  .mbar .m1{background:var(--neon);color:#fff}.mbar .m2{background:#25D366;color:#073B1C}.mbar .m3{background:#fff;color:var(--wall)}
+}
+
+/* ---------- лайтбокс ---------- */
+.lb{position:fixed;inset:0;z-index:95;background:rgba(20,4,14,.92);display:none;align-items:center;justify-content:center;padding:56px 16px}
+.lb.on{display:flex}
+.lb figure{margin:0;position:relative;max-width:min(92vw,980px);max-height:100%}
+.lb img{max-width:100%;max-height:calc(100vh - 140px);border-radius:12px;margin:auto}
+.lb figure::after{content:"демо — Д. Стрепенюк";position:absolute;right:12px;bottom:40px;font:800 13px/1 var(--f-body);color:#fff;opacity:.75;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.lb figcaption{color:#FFDCEB;text-align:center;margin-top:10px;font-weight:700}
+.lb button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;display:grid;place-items:center}
+.lb .x{top:14px;right:14px}.lb .pv{left:14px;top:50%;margin-top:-24px}.lb .nx{right:14px;top:50%;margin-top:-24px}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wm-layer" aria-hidden="true"></div>
+<svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+  <defs><path id="sealPath" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+  <circle cx="60" cy="60" r="57" fill="none" stroke="#FFD6EB" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="35" fill="none" stroke="#FFD6EB" stroke-width="1.5"/>
+  <text font-family="Nunito,Arial,sans-serif" font-size="10.4" font-weight="800" letter-spacing="1.6" fill="#FFD6EB"><textPath href="#sealPath">ДЕМО-ВЕРСИЯ ★ ДЕНИС СТРЕПЕНЮК ★</textPath></text>
+  <text x="60" y="66" text-anchor="middle" font-family="Nunito,Arial,sans-serif" font-size="17" font-weight="800" fill="#FFD6EB">ДЕМО</text>
+</svg>
+
+<div class="demo-bar">
+  <div class="wrap">
+    <div>Демо-версия нового сайта для <b>Cake.Time</b>, собрана по открытым данным. Разработка — <b>Денис Стрепенюк</b>, <a href="tel:+79773938033">+7 977 393-80-33</a></div>
+    <button class="owner-toggle" type="button" id="ownerToggle" aria-pressed="false"><span class="sw"></span>Режим владельца</button>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Cake.Time — наверх">
+      <svg id="hdrClock" width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="#fff"/><circle cx="20" cy="20" r="17" fill="none" stroke="#FF5FB4" stroke-width="3"/><line id="hdrH" x1="20" y1="20" x2="20" y2="11" stroke="#25318F" stroke-width="3" stroke-linecap="round"/><line id="hdrM" x1="20" y1="20" x2="20" y2="7" stroke="#A3164F" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="20" r="2.2" fill="#25318F"/></svg>
+      Cake.Time <small id="hdrTime">08:00</small>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#menu">Меню</a><a href="#coffee">Кофе</a><a href="#case">Витрина</a><a href="#bento">Бенто</a><a href="#cakes">Торты</a><a href="#visit">Как найти</a>
+    </nav>
+    <a class="hdr-call" href="tel:+79255011992"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span>+7 925 501-19-92</span></a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
+<section class="sec hero" aria-labelledby="h1">
+  <div class="tinsel tinsel--a" aria-hidden="true"></div><div class="tinsel tinsel--b" aria-hidden="true"></div><div class="tinsel tinsel--c" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="owner-note"><span class="on-t">Режим владельца · как работает сайт</span>Сейчас у Cake.Time <b>нет своего сайта</b>: всё держится на карточке в Картах и группе ВК. Этот сайт отвечает на три вопроса гостя без звонка: <b>«вы открыты?», «сколько стоит?» и «как заказать торт?»</b> Каждая кнопка ведёт в ваш WhatsApp с готовым текстом заказа. Жёлтые заметки видите только вы, гости их не увидят.</div>
+    <div class="hero-grid">
+      <div>
+        <div class="neon-wrap">
+          <h1 class="neon" id="h1"><span>Время</span><span class="sm">для</span><span>кофе</span><span class="sm">и</span><span>тортика</span></h1>
+        </div>
+        <p class="hero-sub"><b>Cake.Time</b> — розовая кофейня-кондитерская в Одинцово. Десерты ручной работы, бенто-торты, завтраки, паста и детская зона.</p>
+        <div class="hero-chips">
+          <span class="chip">★ 5,0 · 1 236 оценок</span>
+          <span class="chip">Хорошее место 2026</span>
+          <span class="chip">Бул. Любы Новосёловой, 18</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn--neon" href="#bento">Собрать бенто-торт</a>
+          <a class="btn btn--white" href="#menu">Меню и цены</a>
+          <a class="btn btn--ghost" href="https://yandex.ru/maps/?rtext=~55.675399,37.259806&amp;rtt=auto" target="_blank" rel="noopener">Маршрут</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="frame"><figure class="ph" data-group="hall" data-cap="Зал Cake.Time: неон «Время для кофе и тортика»"><img src="img/hall-neon-case-1200.webp" srcset="img/hall-neon-case-600.webp 600w, img/hall-neon-case-1200.webp 960w" sizes="(max-width:900px) 92vw, 480px" alt="Розовый зал Cake.Time с неоновой вывеской и витриной с тортами" fetchpriority="high"></figure></div>
+        <div class="clock-card" aria-live="polite">
+          <svg viewBox="0 0 120 120" aria-hidden="true" id="wallClock">
+            <circle cx="60" cy="60" r="56" fill="#fff" stroke="#25318F" stroke-width="6"/>
+            <g id="clockTicks"></g>
+            <text x="60" y="30" text-anchor="middle" font-family="Pangolin,cursive" font-size="14" fill="#25318F">12</text>
+            <text x="94" y="65" text-anchor="middle" font-family="Pangolin,cursive" font-size="14" fill="#25318F">3</text>
+            <text x="60" y="100" text-anchor="middle" font-family="Pangolin,cursive" font-size="14" fill="#25318F">6</text>
+            <text x="26" y="65" text-anchor="middle" font-family="Pangolin,cursive" font-size="14" fill="#25318F">9</text>
+            <line id="cH" x1="60" y1="60" x2="60" y2="34" stroke="#25318F" stroke-width="6" stroke-linecap="round"/>
+            <line id="cM" x1="60" y1="60" x2="60" y2="20" stroke="#25318F" stroke-width="4" stroke-linecap="round"/>
+            <line id="cS" x1="60" y1="68" x2="60" y2="16" stroke="#FF5FB4" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="5" fill="#FF5FB4"/>
+          </svg>
+          <div>
+            <div class="clock-now" id="clockPhrase">Время для кофе и тортика</div>
+            <div class="clock-status" id="clockStatus">Открыто до 21:00</div>
+            <div class="clock-hint" id="clockHint">Сейчас в Одинцово —:—</div>
+            <div class="hours-mini" id="hoursMini"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ МЕНЮ ============ -->
+<section class="sec sec--deep" id="menu" aria-labelledby="h-menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="9:00"></i>Время завтракать, обедать и ужинать</div>
+      <h2 id="h-menu">Меню прямо с досок в зале</h2>
+      <p class="lead">Цены и названия — с досок, которые висят в зале: «Сырники-мячики», «Креветики-пистолетики» и вафли «Завхоз Дома культуры».</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>На Яндекс Картах ваше меню помечено <b>«давно не обновлялось»</b>: там 10 позиций и капучино «от 150 ₽». Здесь меню с ваших досок, его легко обновлять. Человек, который увидел цену заранее, приходит уже решившим, что заказать.</div>
+    <div class="tabs" role="tablist" aria-label="Разделы меню">
+      <button class="tab" role="tab" id="t-br" aria-controls="p-br" aria-selected="true">Завтраки</button>
+      <button class="tab" role="tab" id="t-ln" aria-controls="p-ln" aria-selected="false" tabindex="-1">Обеды и ужины</button>
+      <button class="tab" role="tab" id="t-pz" aria-controls="p-pz" aria-selected="false" tabindex="-1">Пицца</button>
+    </div>
+
+    <div role="tabpanel" id="p-br" aria-labelledby="t-br">
+      <div class="board">
+        <h3>Завтракать в <em>@cake.time</em></h3>
+        <div class="board-grid">
+          <div class="mi"><div class="mi-row">Бенедикт с окороком<span class="dots"></span><span class="pr">620 ₽</span></div><p>Свежий круассан, два яйца пашот, голландез, творожный сыр, ломтики окорока.</p></div>
+          <div class="mi"><div class="mi-row">Бенедикт с лососем<span class="dots"></span><span class="pr">650 ₽</span></div><p>Круассан, пашот, голландез, авокадо, сливочный сыр и лосось собственного посола.</p></div>
+          <div class="mi"><div class="mi-row">Большой английский завтрак<span class="dots"></span><span class="pr">650 ₽</span></div><p>Колбаска на гриле, глазунья, окорок, шампиньоны, картофельный оладушек, фасоль, вяленые томаты, тёмный хлеб.</p></div>
+          <div class="mi"><div class="mi-row">Вафли «Завхоз Дома культуры»<span class="dots"></span><span class="pr">620 ₽</span></div><p>Несладкие вафли, глазунья, хамон, жареные шампиньоны, медово-горчичный соус.</p></div>
+          <div class="mi"><div class="mi-row">Сырники-мячики<span class="dots"></span><span class="pr">420 ₽</span></div><p>В хрустящей панировке из печенья, с вишнёвым вареньем и сметаной.</p></div>
+          <div class="mi"><div class="mi-row">Вафли «Лалалэнд»<span class="dots"></span><span class="pr">480 ₽</span></div><p>Сладкие, на выбор: сливочное мороженое с карамелью, шоколадное с Oreo или с клубничным топпингом.</p></div>
+        </div>
+        <div class="menu-photos">
+          <figure class="ph" data-group="food" data-cap="Бенедикт на круассане"><img src="img/benedict-600.webp" loading="lazy" alt="Бенедикт на круассане с яйцом пашот"></figure>
+          <figure class="ph" data-group="food" data-cap="Английский завтрак"><img src="img/english-600.webp" loading="lazy" alt="Большой английский завтрак"></figure>
+          <figure class="ph" data-group="food" data-cap="Сырники"><img src="img/syrniki-600.webp" loading="lazy" alt="Сырники со сметаной"></figure>
+          <figure class="ph" data-group="food" data-cap="Латте с сердечком"><img src="img/latte-heart-600.webp" loading="lazy" alt="Латте с рисунком сердце"></figure>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="p-ln" aria-labelledby="t-ln" hidden>
+      <div class="board">
+        <h3>Обедать и ужинать в <em>@cake.time</em></h3>
+        <div class="board-grid">
+          <div class="board-sub">Паста</div>
+          <div class="mi"><div class="mi-row">Карбонара<span class="dots"></span><span class="pr">550 ₽</span></div><p>Спагетти в сливках с пармезаном и беконом.</p></div>
+          <div class="mi"><div class="mi-row">Сливочная с курицей<span class="dots"></span><span class="pr">550 ₽</span></div><p>Феттуччине в сливочном соусе с курицей, по желанию — с шампиньонами.</p></div>
+          <div class="mi"><div class="mi-row">Томатная<span class="dots"></span><span class="pr">520 ₽</span></div><p>Тортильони с томлёными томатами, пармезаном и базиликом.</p></div>
+          <div class="mi"><div class="mi-row">Детский набор<span class="badge">детям</span><span class="dots"></span><span class="pr">420 ₽</span></div><p>Макарошки с сыром и мини-сосисками, свежий огурец и помидорки.</p></div>
+          <div class="board-sub">Салаты</div>
+          <div class="mi"><div class="mi-row">«Богатенький Цезарь»<span class="dots"></span><span class="pr">420 ₽</span></div><p>Салат, курица, помидорки, пармезан и фирменный соус.</p></div>
+          <div class="mi"><div class="mi-row">«Креветики-пистолетики»<span class="dots"></span><span class="pr">480 ₽</span></div><p>Салат, креветки, помидорки, авокадо, страчателла, оливковое масло.</p></div>
+          <div class="board-sub">Супы</div>
+          <div class="mi"><div class="mi-row">Тыквенный крем-суп<span class="dots"></span><span class="pr">350 ₽</span></div><p>Со сливками или с чесночным маслом — на ваш выбор.</p></div>
+          <div class="mi"><div class="mi-row">Крем-суп из шампиньонов<span class="dots"></span><span class="pr">350 ₽</span></div><p>Со взбитой сливочной пенкой.</p></div>
+          <div class="mi"><div class="mi-row">Солянка<span class="dots"></span><span class="pr">380 ₽</span></div><p>На говяжьем бульоне, с томатами и колбасками.</p></div>
+          <div class="mi"><div class="mi-row">С макарошками<span class="badge">детям</span><span class="dots"></span><span class="pr">350 ₽</span></div><p>Куриный супчик с мини-макаронами и шпинатом.</p></div>
+          <div class="board-sub">К чаю и к компании</div>
+          <div class="mi"><div class="mi-row">Картошка фри<span class="dots"></span><span class="pr">270 ₽</span></div><p>С соусом на выбор.</p></div>
+          <div class="mi"><div class="mi-row">Сырные палочки<span class="dots"></span><span class="pr">480 ₽</span></div><p>Моцарелла в панировке, соус на выбор.</p></div>
+          <div class="mi"><div class="mi-row">Куриные стрипсы<span class="dots"></span><span class="pr">480 ₽</span></div><p>С соусом на выбор.</p></div>
+        </div>
+        <div class="menu-photos">
+          <figure class="ph" data-group="food" data-cap="Паста"><img src="img/pasta-600.webp" loading="lazy" alt="Паста в Cake.Time"></figure>
+          <figure class="ph" data-group="food" data-cap="Розовые столики у окна"><img src="img/pink-table-600.webp" loading="lazy" alt="Розовые столики у окна"></figure>
+          <figure class="ph" data-group="food" data-cap="Напитки на «меховом» столике"><img src="img/fur-drinks-600.webp" loading="lazy" alt="Напитки и пирожное на столике"></figure>
+          <figure class="ph" data-group="food" data-cap="Матча-латте"><img src="img/matcha-600.webp" loading="lazy" alt="Матча-латте"></figure>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="p-pz" aria-labelledby="t-pz" hidden>
+      <div class="board">
+        <h3>Пицца от <em>@cake.time</em></h3>
+        <div class="board-grid">
+          <div class="mi"><div class="mi-row">Маргарита<span class="dots"></span><span class="pr">650 ₽</span></div><p>Томатный соус, моцарелла, томаты и орегано.</p></div>
+          <div class="mi"><div class="mi-row">Пепперони<span class="dots"></span><span class="pr">650 ₽</span></div><p>Классика: томатный соус, пепперони и моцарелла.</p></div>
+          <div class="mi"><div class="mi-row">Три сыра<span class="dots"></span><span class="pr">650 ₽</span></div><p>На сливочном соусе: моцарелла, чеддер и пармезан.</p></div>
+          <div class="mi"><div class="mi-row">С ветчиной и грибами<span class="dots"></span><span class="pr">650 ₽</span></div><p>На томатном или сливочном соусе, с моцареллой.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="board-note" style="color:#FFD3E6">Цены — по фотографиям меню в зале (Яндекс Карты, 2025–2026). Актуальность уточняйте по телефону <a href="tel:+79255011992">+7 925 501-19-92</a>.</p>
+  </div>
+</section>
+
+<!-- ============ КОФЕ ============ -->
+<section class="sec sec--cobalt" id="coffee" aria-labelledby="h-coffee">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="8:15"></i>Время для кофе</div>
+      <h2 id="h-coffee">Соберите стакан и заберите без очереди</h2>
+      <p class="lead">Выберите напиток, объём и добавки. Сумма посчитается сама, а заказ уйдёт бариста в WhatsApp. Стаканы у Cake.Time голубые, с печатью «с любовью».</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Это <b>предзаказ кофе с собой</b> через ваш WhatsApp. Гость пишет по дороге, а приходит к готовому стакану. Утром это дополнительные продажи тем, кто торопится и иначе прошёл бы мимо. Если предзаказы не нужны, кнопка просто станет «Позвонить».</div>
+    <div class="drinks">
+      <div class="board">
+        <h3>Напитки от <em>@cake.time</em></h3>
+        <div class="sizes" role="group" aria-label="Объём стакана">
+          <button class="size" type="button" data-size="250" aria-pressed="false">250 мл</button>
+          <button class="size" type="button" data-size="350" aria-pressed="true">350 мл</button>
+          <button class="size" type="button" data-size="450" aria-pressed="false">450 мл</button>
+        </div>
+        <table class="dtable" id="dtable">
+          <thead><tr><th scope="col">Напиток</th><th scope="col">250 мл</th><th scope="col">350 мл</th><th scope="col">450 мл</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="board-sub" style="margin-top:20px">Дополнения</div>
+        <div class="extras" id="extras"></div>
+        <div class="menu-photos">
+          <figure class="ph" data-group="drinks" data-cap="Молочный коктейль в фирменном стакане"><img src="img/milkshake-600.webp" loading="lazy" alt="Молочный коктейль в розовом стакане Cake.Time"></figure>
+          <figure class="ph" data-group="drinks" data-cap="Кофе с маршмеллоу-фигурками"><img src="img/cups-marsh-600.webp" loading="lazy" alt="Два стакана кофе с маршмеллоу-фигурками"></figure>
+          <figure class="ph" data-group="drinks" data-cap="Голубой латте"><img src="img/blue-latte-600.webp" loading="lazy" alt="Голубой латте в кружке"></figure>
+          <figure class="ph" data-group="drinks" data-cap="Напиток со сливками и крендельками"><img src="img/pretzel-drink-600.webp" loading="lazy" alt="Напиток со взбитыми сливками и крендельками"></figure>
+        </div>
+      </div>
+      <aside class="cup-panel" aria-live="polite">
+        <div class="cup-stage"><div class="cup" id="cup"><div class="lid"></div><div class="body"></div><div class="stamp">с любовью<br>Cake.Time</div></div></div>
+        <div class="cup-name" id="cupName">Капучино</div>
+        <div class="cup-meta" id="cupMeta">350 мл</div>
+        <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
+        <div class="cup-total"><span id="cupTotal">240 ₽</span></div>
+        <div class="pickup"><label for="pickTime">Заберу</label><select id="pickTime"></select></div>
+        <a class="btn btn--wa" id="cupWa" href="#" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.3z"/></svg>Заказать с собой</a>
+        <p class="tiny">Сообщение откроется в WhatsApp кофейни. Бариста ответит и подтвердит заказ.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ВИТРИНА ============ -->
+<section class="sec" id="case" aria-labelledby="h-case">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="16:00"></i>Время для тортика</div>
+      <h2 id="h-case">Витрина, у которой разбегаются глаза</h2>
+      <p class="lead">Капкейки, макарон, муссовые зверята, клубника в шоколаде. Витрина часто меняется, поэтому ниже есть кнопка «что сейчас в наличии».</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>По отзывам, вы уже <b>продаёте доставку по фото витрины</b>: «консультант сделал фото десертов из наличия». Кнопка ниже делает это в один тап, и гостю не нужно искать ваш номер. Цены на ценниках взяты из вашего меню на Картах. Где цены нет, мы её не придумывали.</div>
+    <div class="case">
+      <div class="shelf">
+        <div class="item"><figure class="ph" data-group="case" data-cap="Тарталетка со свежими ягодами — 475 ₽"><img src="img/tartlet-600.webp" loading="lazy" alt="Тарталетка с ягодами"></figure><div class="tag">Тарталетка с ягодами<b>475 ₽</b></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Корзиночки из безе с ягодами"><img src="img/meringue-600.webp" loading="lazy" alt="Безе с кремом и ягодами"></figure><div class="tag">Безе с ягодами<i>Павлова — 420 ₽</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Муссовые пирожные-утята"><img src="img/mousse-duck-600.webp" loading="lazy" alt="Голубое муссовое пирожное с утёнком"></figure><div class="tag">Муссовые утята<i>с витрины</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Муссовый зайчик"><img src="img/mousse-bunny-600.webp" loading="lazy" alt="Муссовое пирожное в виде зайчика"></figure><div class="tag">Муссовый зайчик<i>с витрины</i></div></div>
+      </div>
+      <div class="shelf">
+        <div class="item"><figure class="ph" data-group="case" data-cap="Капкейки"><img src="img/cupcakes-600.webp" loading="lazy" alt="Розовые и голубые капкейки"></figure><div class="tag">Капкейки<i>розовые и голубые</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Клубника в шоколаде"><img src="img/strawberries-600.webp" loading="lazy" alt="Клубника в шоколаде"></figure><div class="tag">Клубника в шоколаде<i>к празднику</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Макарон в подарочных коробках"><img src="img/macarons-box-600.webp" loading="lazy" alt="Разноцветные макарон в коробках"></figure><div class="tag">Макарон<i>в коробках</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Красный бархат"><img src="img/red-velvet-600.webp" loading="lazy" alt="Пирожное красный бархат"></figure><div class="tag">Красный бархат<i>к кофе</i></div></div>
+      </div>
+      <div class="shelf">
+        <div class="item"><figure class="ph" data-group="case" data-cap="Пирожное-цветок"><img src="img/yellow-flower-600.webp" loading="lazy" alt="Жёлтое пирожное-цветок"></figure><div class="tag">Пирожное-цветок<i>с витрины</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Капкейки с Oreo"><img src="img/oreo-cupcakes-600.webp" loading="lazy" alt="Капкейки с печеньем Oreo"></figure><div class="tag">Капкейки с Oreo<i>с витрины</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Макарон с рисунками"><img src="img/macarons-print-600.webp" loading="lazy" alt="Макарон с напечатанными рисунками"></figure><div class="tag">Макарон с картинками<i>к празднику</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Торт в подарочной коробке с шаром"><img src="img/cake-gift-600.webp" loading="lazy" alt="Торт в прозрачной подарочной коробке с воздушным шаром"></figure><div class="tag">Торт в подарочной коробке<i>с шаром</i></div></div>
+      </div>
+      <div style="padding:0 4px 22px;color:#FFE6F1;font-size:15px"><b style="color:#fff">Чизкейк на палочке «Эскимо» — 360 ₽.</b> Классический чизкейк в шоколаде, начинка на выбор:
+        <div class="eskimo"><span>кокос</span><span>фисташка</span><span>малина</span><span>клубника</span><span>манго</span><span>маракуйя</span></div>
+      </div>
+    </div>
+    <div class="case-cta">
+      <p><b>Хотите доставку?</b> Напишите — бариста пришлёт фото того, что сейчас на витрине, и упакует так, чтобы пирожные доехали целыми.</p>
+      <a class="btn btn--wa" href="https://wa.me/79255011992?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%D1%82%D0%B5,%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D1%84%D0%BE%D1%82%D0%BE%20%D0%B2%D0%B8%D1%82%D1%80%D0%B8%D0%BD%D1%8B%20%E2%80%94%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B." target="_blank" rel="noopener">Что сейчас на витрине?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ БЕНТО ============ -->
+<section class="sec sec--cobalt" id="bento" aria-labelledby="h-bento">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="18:30"></i>Время для подарка</div>
+      <h2 id="h-bento">Нарисуйте свой бенто-торт</h2>
+      <p class="lead">Маленький торт в коробочке, на 2–3 человек, с вашей надписью. Выберите цвет, бортик и декор. Эскиз уйдёт кондитеру в WhatsApp, а картинку можно сохранить себе.</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Конструктор — это <b>готовое ТЗ для кондитера</b>: цвет, бортик, декор, надпись и дата приходят одним сообщением, без десяти уточнений. А эскиз с вашим адресом гости пересылают друзьям, и это бесплатная реклама. Цены 1 800 и 2 100 ₽ взяты из вашего меню на Картах («Бенто тортик» и «Лев»).</div>
+    <div class="bento">
+      <div class="bento-stage">
+        <canvas id="bentoCanvas" width="600" height="600" aria-label="Эскиз бенто-торта"></canvas>
+        <div class="bento-price">
+          <div class="sum"><span id="bentoSum">1 800 ₽</span><small id="bentoSumNote">Бенто с надписью — цена из меню. Итог подтвердит кондитер.</small></div>
+          <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
+        </div>
+      </div>
+      <form class="ctl" id="bentoForm" onsubmit="return false">
+        <fieldset><legend>Повод</legend><div class="opts" id="oOccasion"></div></fieldset>
+        <fieldset><legend>Цвет крема</legend><div class="opts" id="oCream"></div></fieldset>
+        <fieldset><legend>Надпись</legend>
+          <div class="ins"><input id="ins1" maxlength="16" aria-label="Надпись, первая строка" autocomplete="off"><input id="ins2" maxlength="16" aria-label="Надпись, вторая строка" autocomplete="off"></div>
+          <div class="opts" id="oInk" style="margin-top:10px"></div>
+        </fieldset>
+        <fieldset><legend>Бортик</legend><div class="opts" id="oBorder"></div></fieldset>
+        <fieldset><legend>Декор</legend><div class="opts" id="oDecor"></div></fieldset>
+        <fieldset><legend>К какому дню</legend><input type="date" id="bentoDate" aria-label="Дата"></fieldset>
+        <div class="acts">
+          <a class="btn btn--wa" id="bentoWa" href="#" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.3z"/></svg>Отправить эскиз в WhatsApp</a>
+          <button class="btn btn--cobalt" type="button" id="bentoPng">Скачать картинку</button>
+          <button class="btn btn--ghost" type="button" id="bentoTg" style="color:var(--cobalt);box-shadow:inset 0 0 0 2px #D5DBFF">Текст для Telegram</button>
+        </div>
+        <p class="tiny">В WhatsApp придёт текст заказа. Картинку можно приложить следом: она сохранится по кнопке «Скачать».</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ТОРТЫ ============ -->
+<section class="sec" id="cakes" aria-labelledby="h-cakes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="19:00"></i>Время для праздника</div>
+      <h2 id="h-cakes">Торты, о которых потом рассказывают</h2>
+      <p class="lead">Единороги, мишки, надписи из шоколада, ягоды и макарон сверху. Посчитайте, сколько торта нужно на ваших гостей, и отправьте заявку.</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Главный вопрос перед заказом торта — <b>«сколько брать и во сколько обойдётся»</b>. Калькулятор отвечает на него до звонка, и в WhatsApp приходит уже тёплый клиент с числом гостей и датой. Цена 2 800 ₽/кг и оформление «Единорога» 1 000 ₽ — из меню на Картах. Если цены изменились, поправим за минуту.</div>
+    <div class="cakes">
+      <div class="cake-gal">
+        <figure class="ph" data-group="cakes" data-cap="Торт-единорог"><img src="img/cake-unicorn-600.webp" srcset="img/cake-unicorn-600.webp 600w, img/cake-unicorn-1200.webp 960w" sizes="(max-width:920px) 33vw, 240px" loading="lazy" alt="Торт-единорог с цветами из крема"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Двухъярусный торт с мишками"><img src="img/cake-teddy-600.webp" loading="lazy" alt="Двухъярусный торт с мишками"></figure>
+        <figure class="ph" data-group="cakes" data-cap="«Лучшему учителю» — надпись из шоколада"><img src="img/cake-teacher-600.webp" loading="lazy" alt="Торт с шоколадной надписью «Лучшему учителю»"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Торт с ягодами и макарон"><img src="img/cake-grey-600.webp" loading="lazy" alt="Серо-голубой торт с ягодами и макарон"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто «Маме» с ромашками"><img src="img/bento-daisies-600.webp" loading="lazy" alt="Голубой бенто-торт с ромашками и надписью «Маме»"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто с радугой и свечкой"><img src="img/bento-rainbow-600.webp" loading="lazy" alt="Яркий бенто-торт со свечой"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто-торты с рисунками"><img src="img/bento-boxes-600.webp" loading="lazy" alt="Бенто-торты в коробочках с рисунками"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто с надписью"><img src="img/bento-boar-600.webp" loading="lazy" alt="Синий бенто-торт с розовой надписью"></figure>
+      </div>
+      <div class="calc">
+        <h3>Сколько торта нужно?</h3>
+        <p style="margin:0;color:var(--ink-2);font-size:15px">Считаем примерно по 150 г на гостя, с шагом 0,5 кг. В меню торты указаны за 1 кг.</p>
+        <label class="lbl" for="guests"><span>Гостей</span><span id="guestsOut">12</span></label>
+        <input type="range" id="guests" min="4" max="40" value="12">
+        <div class="lbl" style="margin-top:14px">Какой торт</div>
+        <div class="opts" id="oCake"></div>
+        <div class="res-wrap">
+          <div class="res"><div><span>Вес</span><b id="cakeKg">2 кг</b></div><div><span>Примерно</span><b id="cakeRub">5 600 ₽</b></div></div>
+          <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
+        </div>
+        <a class="btn btn--wa" id="cakeWa" href="#" target="_blank" rel="noopener">Обсудить торт в WhatsApp</a>
+        <ul class="price-list">
+          <li><span>Бенто-торт с надписью</span><b>1 800 ₽</b></li>
+          <li><span>Бенто «Лев», «Я беременна!»</span><b>2 100 ₽</b></li>
+          <li><span>Торт «Единорог»</span><b>2 800 ₽/кг + 1 000 ₽</b></li>
+          <li><span>Торты «Пылающий», «Три шоколада»</span><b>2 800 ₽/кг</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ДЛЯ СВОИХ ============ -->
+<section class="sec sec--cobalt" id="own" aria-labelledby="h-own">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="11:00"></i>Время для своих</div>
+      <h2 id="h-own">С детьми, с собакой, с подругами</h2>
+      <p class="lead">Детская зона с бассейном из шариков, костюмами и игрушечной кухней, пока родители пьют кофе. Пускают с собаками, летом работает веранда с цветами.</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Мамы ищут <b>«кафе с детской комнатой в Одинцово»</b>, и у вас она есть: о детях 95 отзывов, 90% положительных. Но без сайта этот поиск достаётся другим. Этот блок закрывает вопрос «а с ребёнком можно?» до того, как гость откроет Карты.</div>
+    <div class="own">
+      <article class="card card--wide">
+        <div class="two">
+          <figure class="ph" data-group="own" data-cap="Детская зона с шариками"><img src="img/kids-pit-600.webp" loading="lazy" alt="Детская зона с сухим бассейном"></figure>
+          <div class="in">
+            <h3>Детская зона</h3>
+            <p>Бассейн из шариков, костюмы, машинки-толкаторы, коляски и кухня. Есть детское меню.</p>
+            <ul>
+              <li><span>Детский набор: макарошки с сыром и сосисками</span><b>420 ₽</b></li>
+              <li><span>Супчик с макарошками</span><b>350 ₽</b></li>
+              <li><span>Какао, 250 мл</span><b>180 ₽</b></li>
+            </ul>
+            <p style="margin-top:14px">Здесь отмечают дни рождения: в 14 отзывах о праздниках — только хорошее. Торт можно заказать заранее.</p>
+            <a class="btn btn--neon" style="margin-top:14px" href="https://wa.me/79255011992?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%82%D0%B8%D0%BC%20%D0%BE%D1%82%D0%BC%D0%B5%D1%82%D0%B8%D1%82%D1%8C%20%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%83%20%D0%B2%D0%B0%D1%81.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5,%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F." target="_blank" rel="noopener">Спросить про детский праздник</a>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <figure class="ph" data-group="own" data-cap="С собакой — можно"><img src="img/dog-600.webp" loading="lazy" alt="Шпиц в синем кресле кофейни"></figure>
+        <div class="in"><h3>Можно с собакой</h3><p>Собакам здесь рады. Шпиц на фото — гость, и, судя по позе, ему всё понравилось.</p></div>
+      </article>
+      <article class="card">
+        <figure class="ph" data-group="own" data-cap="Летняя веранда"><img src="img/veranda-600.webp" loading="lazy" alt="Летняя веранда у входа в кофейню"></figure>
+        <div class="in"><h3>Веранда летом</h3><p>Несколько столиков на улице и живые цветы. Кофе с собой — в голубом стакане.</p></div>
+      </article>
+      <article class="card">
+        <figure class="ph" data-group="own" data-cap="Подарочные наборы и открытки"><img src="img/gifts-600.webp" loading="lazy" alt="Подарочные коробки со сладостями"></figure>
+        <div class="in"><h3>Подарок на бегу</h3><p>Стенд с открытками и мини-сувенирами, сладкие наборы в коробках. Удобно, если опаздываете на день рождения.</p></div>
+      </article>
+      <article class="card">
+        <figure class="ph" data-group="own" data-cap="Синие кресла и неон"><img src="img/hall-armchairs-600.webp" loading="lazy" alt="Синие кресла и неоновая вывеска"></figure>
+        <div class="in"><h3>Посидеть с подругами</h3><p>Синие кресла, золотой дождик, «меховые» столики. Фото отсюда получаются сами.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ОТЗЫВЫ ============ -->
+<section class="sec sec--deep" id="reviews" aria-labelledby="h-rev">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="20:00"></i>Время для отзывов</div>
+      <h2 id="h-rev">1 024 отзыва и средняя 5,0</h2>
+      <p class="lead">Мы свели отзывы с Яндекс Карт в один чек: что гости отмечают чаще всего и как оценивают.</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Рейтинг 5,0 и награда «Хорошее место 2026» — ваш главный актив. Сайт показывает лучшее и <b>ведёт гостей оставлять новые оценки</b>. Свежие пятёрки работают лучше любого ответа на редкий негатив, а стикер за отзыв у вас уже придуман.</div>
+    <div class="reviews">
+      <div>
+        <div class="receipt-wrap"><div class="receipt" role="img" aria-label="Чек отзывов: атмосфера 98 процентов, персонал 97, напитки 95, кофе 94, еда 94, десерты 93. Итого 5,0">
+          <h3>CAKE.TIME · ЧЕК ОТЗЫВОВ</h3>
+          <div class="c">Яндекс Карты · 1 236 оценок</div>
+          <div class="ln"><span>Атмосфера</span><span></span><span>98%</span></div>
+          <div class="ln"><span>Персонал</span><span></span><span>97%</span></div>
+          <div class="ln"><span>Напитки</span><span></span><span>95%</span></div>
+          <div class="ln"><span>Кофе</span><span></span><span>94%</span></div>
+          <div class="ln"><span>Еда</span><span></span><span>94%</span></div>
+          <div class="ln"><span>Интерьер</span><span></span><span>94%</span></div>
+          <div class="ln"><span>Десерты</span><span></span><span>93%</span></div>
+          <div class="ln"><span>Торты</span><span></span><span>93%</span></div>
+          <hr>
+          <div class="ln tot"><span>ИТОГО</span><span></span><span><span class="star">★</span> 5,0</span></div>
+          <div class="c" style="margin-top:10px">% — доля положительных упоминаний</div>
+        </div></div>
+        <div class="badge-gp"><i>★</i>Хорошее место 2026 · Яндекс Карты</div>
+      </div>
+      <div>
+        <div class="quotes">
+          <blockquote class="q"><p>«Самая красивая кофейня в Одинцово, такой розовый рай для девочек»</p><footer>Анна · Яндекс Карты</footer></blockquote>
+          <blockquote class="q"><p>«Не стесняйтесь спросить совета у сотрудников. Подают заказ быстро»</p><footer>Елизавета · Яндекс Карты</footer></blockquote>
+          <blockquote class="q"><p>«Сервис 10/10… пирожные доехали в целости и сохранности!»</p><footer>Мария · о доставке</footer></blockquote>
+          <blockquote class="q"><p>«Наполеон — просто вкус из детства»</p><footer>Александра · Яндекс Карты</footer></blockquote>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
+          <a class="btn btn--white" href="https://yandex.ru/maps/org/cake_time/115082770190/reviews/" target="_blank" rel="noopener">Все отзывы на Картах</a>
+          <a class="btn btn--ghost" href="https://yandex.ru/maps/org/cake_time/115082770190/reviews/" target="_blank" rel="noopener">Оставить свой</a>
+        </div>
+        <p style="margin:14px 0 0;color:#FFD3E6;font-size:14.5px">Оставили отзыв? Покажите его на кассе и выберите стикер из коробочки. Это придумали Даша и Костя, хозяева кофейни.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КАК НАЙТИ ============ -->
+<section class="sec sec--cobalt" id="visit" aria-labelledby="h-visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="21:00"></i>Время заглянуть</div>
+      <h2 id="h-visit">Ищите голубую вывеску «Кофейня»</h2>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Все контакты кликабельны: звонок, WhatsApp, Telegram, MAX, ВК и маршрут в Яндекс Картах. Карта грузится только по клику, поэтому сайт открывается быстро даже на слабом мобильном интернете.</div>
+    <div class="visit">
+      <div>
+        <p class="addr">Одинцово, бульвар Любы Новосёловой, 18</p>
+        <p style="margin:0;color:#DCE2FF">Голубой фасад, розовый велосипед у входа. Остановка «Молодёжная улица» — около 300 м.</p>
+        <table class="hours" id="hoursTable"><tbody></tbody></table>
+        <p style="margin:0;font-size:13.5px;color:#C9D3FF">В праздники график может меняться — лучше уточнить по телефону.</p>
+        <div class="contacts">
+          <a class="btn btn--white" href="tel:+79255011992">+7 925 501-19-92</a>
+          <a class="btn btn--wa" href="https://wa.me/79255011992?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--ghost" href="https://t.me/+79255011992" target="_blank" rel="noopener">Telegram</a>
+          <a class="btn btn--ghost" href="https://max.ru/79255011992" target="_blank" rel="noopener">MAX</a>
+          <a class="btn btn--ghost" href="https://vk.com/cake.time" target="_blank" rel="noopener">ВКонтакте</a>
+        </div>
+        <div class="look">
+          <figure class="ph" data-group="visit" data-cap="Вход: голубые двери и розовый велосипед"><img src="img/door-bike-600.webp" loading="lazy" alt="Голубые двери кофейни и розовый велосипед"></figure>
+          <figure class="ph" data-group="visit" data-cap="Зал: витрина и плитка"><img src="img/case-tiles-600.webp" loading="lazy" alt="Витрина с десертами и плиточная стойка"></figure>
+        </div>
+      </div>
+      <div class="map-box" id="mapBox">
+        <figure class="ph"><img src="img/hall-wide-1200.webp" loading="lazy" alt="Зал Cake.Time"></figure>
+        <div class="map-load">
+          <p>Карта загрузится по клику — чтобы сайт открывался быстрее.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn--cobalt" type="button" id="mapBtn">Показать карту</button>
+            <a class="btn btn--neon" href="https://yandex.ru/maps/?rtext=~55.675399,37.259806&amp;rtt=auto" target="_blank" rel="noopener">Маршрут</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div>
+      <div style="font:400 30px/1 var(--f-hand);color:#fff">Cake.Time</div>
+      <p style="margin:8px 0 0">Кофейня-кондитерская · Одинцово, бул. Любы Новосёловой, 18<br>Пн–Пт 08:00–21:00 · Сб–Вс 09:00–21:00 · <a href="tel:+79255011992">+7 925 501-19-92</a></p>
+      <div class="soc"><a class="chip" href="https://vk.com/cake.time" target="_blank" rel="noopener">ВК</a><a class="chip" href="https://wa.me/79255011992" target="_blank" rel="noopener">WhatsApp</a><a class="chip" href="https://t.me/+79255011992" target="_blank" rel="noopener">Telegram</a><a class="chip" href="https://yandex.ru/maps/org/cake_time/115082770190/" target="_blank" rel="noopener">Яндекс Карты</a></div>
+    </div>
+    <div class="demo-box">
+      <b>Это демо-версия сайта.</b> Мы собрали её по открытым данным: меню, фото и отзывам с Яндекс Карт. Фото сделаны кофейней и гостями. В рабочей версии заменим их на ваши и обновим цены.<br><br>
+      Разработка — <b>Денис Стрепенюк</b>, <a href="tel:+79773938033">+7 977 393-80-33</a> · <a href="https://wa.me/79773938033?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Cake.Time" target="_blank" rel="noopener">написать в WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Быстрые действия">
+  <a class="m1" href="#bento">Бенто-торт</a>
+  <a class="m2" href="https://wa.me/79255011992?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="m3" href="tel:+79255011992">Позвонить</a>
+</nav>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Фото">
+  <button class="x" type="button" aria-label="Закрыть">✕</button>
+  <button class="pv" type="button" aria-label="Предыдущее фото">‹</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="nx" type="button" aria-label="Следующее фото">›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(s, r){ return (r || document).querySelector(s); };
+var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+var PHONE = '79255011992';
+var fmt = function(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+var rub = function(n){ return fmt(n) + ' ₽'; };
+var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+var wa = function(text){ return 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text); };
+var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+console.log('%cCake.Time — демо-версия сайта. Разработка: Денис Стрепенюк, +7 977 393-80-33', 'color:#A3164F;font-weight:bold;font-size:13px');
+
+function toast(msg){ var t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('on'); }, 2600); }
+
+/* ---------- режим владельца ---------- */
+var ownerBtn = $('#ownerToggle');
+function setOwner(on){ document.body.classList.toggle('owner', on); ownerBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); try { localStorage.setItem('ct-owner', on ? '1' : '0'); } catch (e) {} }
+var ownerInit = /[?&]owner=1/.test(location.search);
+if (!ownerInit) { try { ownerInit = localStorage.getItem('ct-owner') === '1'; } catch (e) {} }
+setOwner(ownerInit);
+ownerBtn.addEventListener('click', function(){ setOwner(!document.body.classList.contains('owner')); });
+
+/* ---------- время в Одинцово (Москва) ---------- */
+var HOURS = [[9,21],[8,21],[8,21],[8,21],[8,21],[8,21],[9,21]]; // вс..сб
+var DAYS = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+var DAYS_FULL = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+function msk(){
+  var d = new Date(Date.now() + (new Date().getTimezoneOffset() + 180) * 60000);
+  return { d: d, day: d.getDay(), h: d.getHours(), m: d.getMinutes(), s: d.getSeconds() };
+}
+function plural(n, a, b, c){ var m10 = n % 10, m100 = n % 100; return (m10 === 1 && m100 !== 11) ? a : (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) ? b : c; }
+function dur(min){ var h = Math.floor(min / 60), m = min % 60; return (h ? h + ' ч ' : '') + (m ? m + ' мин' : (h ? '' : '0 мин')); }
+function status(t){
+  var now = t.h * 60 + t.m, o = HOURS[t.day][0] * 60, c = HOURS[t.day][1] * 60;
+  if (now >= o && now < c) return { open: true, left: c - now, close: HOURS[t.day][1] };
+  if (now < o) return { open: false, when: 'сегодня в ' + pad(HOURS[t.day][0]) + ':00', wait: o - now };
+  var nd = (t.day + 1) % 7; return { open: false, when: 'завтра в ' + pad(HOURS[nd][0]) + ':00', wait: 24 * 60 - now + HOURS[nd][0] * 60 };
+}
+function phrase(t, st){
+  if (!st.open) return 'Время мечтать о тортике';
+  if (t.h < 12) return 'Время для завтрака';
+  if (t.h < 16) return 'Время для обеда';
+  return 'Время для кофе и тортика';
+}
+(function ticks(){ var g = $('#clockTicks'), s = ''; for (var i = 0; i < 60; i++){ var a = i * 6 * Math.PI / 180, big = i % 5 === 0, r1 = big ? 45 : 48, r2 = 52; s += '<line x1="' + (60 + r1 * Math.sin(a)).toFixed(1) + '" y1="' + (60 - r1 * Math.cos(a)).toFixed(1) + '" x2="' + (60 + r2 * Math.sin(a)).toFixed(1) + '" y2="' + (60 - r2 * Math.cos(a)).toFixed(1) + '" stroke="' + (big ? '#25318F' : '#C8CDEA') + '" stroke-width="' + (big ? 2.5 : 1.2) + '" stroke-linecap="round"/>'; } g.innerHTML = s; })();
+function setHand(el, deg){ el.setAttribute('transform', 'rotate(' + deg.toFixed(2) + ' 60 60)'); }
+function renderHours(t){
+  var mini = $('#hoursMini'), tb = $('#hoursTable tbody'), order = [1,2,3,4,5,6,0], m = '', h = '';
+  order.forEach(function(d){
+    var td = d === t.day ? ' class="today"' : '';
+    m += '<span' + td + '>' + DAYS[d] + ' ' + HOURS[d][0] + '–' + HOURS[d][1] + '</span>';
+    h += '<tr' + td + '><td>' + DAYS_FULL[d] + (d === t.day ? ' · сегодня' : '') + '</td><td>' + pad(HOURS[d][0]) + ':00–' + HOURS[d][1] + ':00</td></tr>';
+  });
+  mini.innerHTML = m; tb.innerHTML = h;
+}
+var lastDay = -1, lastQ = -1;
+function tick(){
+  var t = msk(), st = status(t);
+  setHand($('#cH'), (t.h % 12) * 30 + t.m * 0.5);
+  setHand($('#cM'), t.m * 6 + t.s * 0.1);
+  setHand($('#cS'), t.s * 6);
+  $('#clockPhrase').textContent = phrase(t, st);
+  var stEl = $('#clockStatus');
+  stEl.textContent = st.open ? 'Открыто до ' + st.close + ':00' : 'Закрыто · откроемся ' + st.when;
+  stEl.classList.toggle('closed', !st.open);
+  $('#clockHint').textContent = 'В Одинцово ' + pad(t.h) + ':' + pad(t.m) + (st.open ? ' · до закрытия ' + dur(st.left) : ' · через ' + dur(st.wait));
+  if (t.day !== lastDay){ lastDay = t.day; renderHours(t); }
+  var q = Math.floor((t.h * 60 + t.m) / 15);
+  if (q !== lastQ){ lastQ = q; fillPickup(); }
+}
+tick();
+setInterval(tick, reduced ? 30000 : 1000);
+
+/* ---------- маленькие часы у заголовков ---------- */
+$$('.tk').forEach(function(el){
+  var p = el.getAttribute('data-t').split(':'), h = +p[0], m = +p[1];
+  var ha = ((h % 12) * 30 + m * 0.5) * Math.PI / 180, ma = m * 6 * Math.PI / 180;
+  el.outerHTML = '<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="11" y1="11" x2="' + (11 + 4.6 * Math.sin(ha)).toFixed(2) + '" y2="' + (11 - 4.6 * Math.cos(ha)).toFixed(2) + '" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="11" y1="11" x2="' + (11 + 6.8 * Math.sin(ma)).toFixed(2) + '" y2="' + (11 - 6.8 * Math.cos(ma)).toFixed(2) + '" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+});
+
+/* ---------- часы в шапке: день в Cake.Time от 08:00 до 21:00 по мере прокрутки ---------- */
+var hdrH = $('#hdrH'), hdrM = $('#hdrM'), hdrT = $('#hdrTime'), raf = 0;
+function onScroll(){
+  raf = 0;
+  var max = document.documentElement.scrollHeight - innerHeight, p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+  var mins = 8 * 60 + Math.round(p * 13 * 60 / 15) * 15, h = Math.floor(mins / 60), m = mins % 60;
+  hdrH.setAttribute('transform', 'rotate(' + ((h % 12) * 30 + m * 0.5) + ' 20 20)');
+  hdrM.setAttribute('transform', 'rotate(' + (m * 6) + ' 20 20)');
+  hdrT.textContent = pad(h) + ':' + pad(m);
+}
+addEventListener('scroll', function(){ if (!raf) raf = requestAnimationFrame(onScroll); }, { passive: true });
+onScroll();
+
+/* ---------- вкладки меню ---------- */
+var tabs = $$('[role=tab]');
+function selectTab(tab){
+  tabs.forEach(function(t){ var on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; $('#' + t.getAttribute('aria-controls')).hidden = !on; });
+}
+tabs.forEach(function(t, i){
+  t.addEventListener('click', function(){ selectTab(t); });
+  t.addEventListener('keydown', function(e){
+    var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (k){ var n = tabs[(i + k + tabs.length) % tabs.length]; selectTab(n); n.focus(); e.preventDefault(); }
+  });
+});
+
+/* ---------- кофе: собрать стакан ---------- */
+var DRINKS = [
+  ['Эспрессо', { one: 160 }], ['Американо', { 250: 160, 350: 180 }], ['Капучино', { 250: 210, 350: 240, 450: 260 }],
+  ['Латте', { 350: 240, 450: 260 }], ['Флэт уайт', { 250: 240 }], ['Матча', { 350: 290, 450: 330 }],
+  ['Раф сливочный', { 350: 290, 450: 310 }], ['Раф лавандовый', { 350: 290, 450: 310 }],
+  ['Какао', { 250: 180, 350: 200, 450: 220 }], ['Горячий шоколад', { 250: 180, 350: 200, 450: 220 }],
+  ['Чай в кружке', { one: 150 }], ['Чай в чайнике', { one: 290 }]
+];
+var ADDS = [['Сироп', 40], ['Молоко / сливки', 40], ['Немолоко', 70], ['Шот эспрессо', 50], ['Маршмеллоу', 50]];
+var SIZES = [250, 350, 450];
+var cup = { i: 2, size: 350, adds: [] };
+var tbody = $('#dtable tbody');
+tbody.innerHTML = DRINKS.map(function(d, i){
+  var p = d[1];
+  var cells = p.one ? '<td class="one" colspan="3">' + p.one + '</td>' : SIZES.map(function(s){ return '<td data-s="' + s + '">' + (p[s] ? p[s] : '<span class="na">—</span>') + '</td>'; }).join('');
+  return '<tr data-i="' + i + '" tabindex="0"><td>' + d[0] + '</td>' + cells + '</tr>';
+}).join('');
+$('#extras').innerHTML = ADDS.map(function(a, i){ return '<label class="extra"><input type="checkbox" value="' + i + '">' + a[0] + ' +' + a[1] + ' ₽</label>'; }).join('');
+function cupPrice(){ var p = DRINKS[cup.i][1]; return p.one ? p.one : p[cup.size]; }
+function fitSize(){ var p = DRINKS[cup.i][1]; if (p.one || p[cup.size]) return; var best = SIZES.filter(function(s){ return p[s]; }).sort(function(a, b){ return Math.abs(a - cup.size) - Math.abs(b - cup.size); })[0]; cup.size = best; }
+function renderCup(){
+  fitSize();
+  var d = DRINKS[cup.i], p = d[1], base = cupPrice();
+  $$('#dtable tbody tr').forEach(function(tr){ tr.classList.toggle('sel', +tr.getAttribute('data-i') === cup.i); });
+  $$('#dtable td[data-s]').forEach(function(td){ td.classList.toggle('col-on', +td.getAttribute('data-s') === cup.size); });
+  $$('.size').forEach(function(b){ var s = +b.getAttribute('data-size'); b.disabled = !p.one && !p[s]; b.setAttribute('aria-pressed', !p.one && s === cup.size); });
+  var addSum = cup.adds.reduce(function(s, i){ return s + ADDS[i][1]; }, 0);
+  var h = p.one ? (/чайнике/.test(d[0]) ? 200 : 150) : { 250: 160, 350: 196, 450: 232 }[cup.size];
+  var c = $('#cup'); c.style.height = h + 'px'; c.style.width = (p.one ? 120 : 110 + (cup.size - 250) / 8) + 'px';
+  $('#cupName').textContent = d[0];
+  var meta = p.one ? (/Эспрессо/.test(d[0]) ? 'одна порция' : '') : cup.size + ' мл';
+  if (cup.adds.length) meta += (meta ? ' + ' : '') + cup.adds.map(function(i){ return ADDS[i][0].toLowerCase(); }).join(', ');
+  $('#cupMeta').textContent = meta;
+  var total = base + addSum;
+  $('#cupTotal').textContent = rub(total);
+  var when = $('#pickTime').value || 'как можно скорее';
+  var line = d[0] + (p.one ? '' : ' ' + cup.size + ' мл') + (cup.adds.length ? ' + ' + cup.adds.map(function(i){ return ADDS[i][0].toLowerCase(); }).join(' + ') : '');
+  $('#cupWa').href = wa('Здравствуйте! Хочу заказать с собой: ' + line + '. Заберу ' + when + '. По меню на сайте — ' + total + ' ₽.');
+}
+tbody.addEventListener('click', function(e){ var tr = e.target.closest('tr'); if (!tr) return; cup.i = +tr.getAttribute('data-i'); renderCup(); });
+tbody.addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('tr')){ e.preventDefault(); cup.i = +e.target.getAttribute('data-i'); renderCup(); } });
+$$('.size').forEach(function(b){ b.addEventListener('click', function(){ cup.size = +b.getAttribute('data-size'); renderCup(); }); });
+$('#extras').addEventListener('change', function(){ cup.adds = $$('#extras input:checked').map(function(x){ return +x.value; }); renderCup(); });
+function fillPickup(){
+  var sel = $('#pickTime'), t = msk(), st = status(t), opts = ['<option value="как можно скорее">как можно скорее</option>'];
+  var day = t.day, start, label;
+  if (st.open){ start = Math.ceil((t.h * 60 + t.m + 15) / 15) * 15; label = 'сегодня'; }
+  else if (t.h * 60 + t.m < HOURS[t.day][0] * 60){ start = HOURS[t.day][0] * 60; label = 'сегодня'; }
+  else { day = (t.day + 1) % 7; start = HOURS[day][0] * 60; label = 'завтра'; }
+  for (var m = start; m <= HOURS[day][1] * 60 - 15; m += 15){ var v = label + ' в ' + pad(Math.floor(m / 60)) + ':' + pad(m % 60); opts.push('<option value="' + v + '">' + v + '</option>'); }
+  var prev = sel.value; sel.innerHTML = opts.join(''); if (prev) sel.value = prev; if (!sel.value) sel.selectedIndex = 0;
+  if (cup) renderCup();
+}
+$('#pickTime').addEventListener('change', renderCup);
+fillPickup();
+renderCup();
+
+/* ---------- бенто-конструктор ---------- */
+var OCCASIONS = [
+  ['bday', 'День рождения', 'С днём', 'рождения!'], ['mom', 'Маме', 'Любимой', 'маме'], ['love', 'Любимому', 'Ты моё', 'счастье'],
+  ['work', 'Коллеге', 'Спасибо', 'за работу!'], ['news', 'Большая новость', 'Скоро нас', 'будет трое'], ['just', 'Просто так', 'Просто', 'так ♥']
+];
+var CREAMS = [['pink', 'Розовый', '#F7B3CC'], ['blue', 'Голубой', '#A6D6F2'], ['mint', 'Мятный', '#B4E6CF'], ['lav', 'Лавандовый', '#CDBCF5'], ['van', 'Ванильный', '#FFF2D3'], ['choc', 'Шоколадный', '#8A5A44'], ['lemon', 'Жёлтый', '#FFE27F']];
+var INKS = [['berry', 'Малиновая', '#C2185B'], ['cobalt', 'Синяя', '#2A3BB0'], ['white', 'Белая', '#FFFFFF'], ['choc', 'Шоколадная', '#5A3424'], ['gold', 'Золотая', '#C49A2C']];
+var BORDERS = [['shell', 'Рюши'], ['pearl', 'Жемчуг'], ['wave', 'Волна'], ['none', 'Без бортика']];
+var DECOR = [['berries', 'Ягоды'], ['daisies', 'Ромашки'], ['hearts', 'Сердечки'], ['sprinkles', 'Посыпка'], ['candle', 'Свечка'], ['panda', 'Фигурка-панда']];
+var B = { occ: 'bday', cream: 'pink', ink: 'berry', border: 'shell', decor: ['berries', 'hearts'], l1: 'С днём', l2: 'рождения!', date: '', touched: false };
+function radios(box, name, list, cur, color){
+  $(box).innerHTML = list.map(function(o){
+    var sw = color ? '<i class="sw-c" style="background:' + o[2] + '"></i>' : '';
+    return '<label class="opt' + (color ? ' opt--color' : '') + '"><input type="radio" name="' + name + '" value="' + o[0] + '"' + (o[0] === cur ? ' checked' : '') + '><span>' + sw + o[1] + '</span></label>';
+  }).join('');
+}
+radios('#oOccasion', 'occ', OCCASIONS, B.occ);
+radios('#oCream', 'cream', CREAMS, B.cream, true);
+radios('#oInk', 'ink', INKS, B.ink, true);
+radios('#oBorder', 'border', BORDERS, B.border);
+$('#oDecor').innerHTML = DECOR.map(function(o){ return '<label class="opt"><input type="checkbox" name="decor" value="' + o[0] + '"' + (B.decor.indexOf(o[0]) >= 0 ? ' checked' : '') + '><span>' + o[1] + (o[0] === 'panda' ? ' · +300 ₽' : '') + '</span></label>'; }).join('');
+$('#ins1').value = B.l1; $('#ins2').value = B.l2;
+var dInput = $('#bentoDate'), today = msk().d;
+dInput.min = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+
+var cv = $('#bentoCanvas'), cx2 = cv.getContext('2d');
+function find(list, k){ for (var i = 0; i < list.length; i++) if (list[i][0] === k) return list[i]; return list[0]; }
+function shade(hex, f){
+  var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+  var t = f < 0 ? 0 : 255, p = Math.abs(f);
+  return 'rgb(' + Math.round((t - r) * p + r) + ',' + Math.round((t - g) * p + g) + ',' + Math.round((t - b) * p + b) + ')';
+}
+function rr(c, x, y, w, h, r){ c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function heart(c, x, y, s, col){ c.save(); c.translate(x, y); c.scale(s / 20, s / 20); c.beginPath(); c.moveTo(0, 6); c.bezierCurveTo(-12, -2, -8, -14, 0, -7); c.bezierCurveTo(8, -14, 12, -2, 0, 6); c.fillStyle = col; c.fill(); c.restore(); }
+function daisy(c, x, y, s){ c.save(); c.translate(x, y); for (var i = 0; i < 9; i++){ c.rotate(Math.PI * 2 / 9); c.beginPath(); c.ellipse(0, -s * .55, s * .22, s * .5, 0, 0, Math.PI * 2); c.fillStyle = '#fff'; c.fill(); c.strokeStyle = 'rgba(0,0,0,.06)'; c.stroke(); } c.beginPath(); c.arc(0, 0, s * .3, 0, Math.PI * 2); c.fillStyle = '#F6C431'; c.fill(); c.restore(); }
+function strawberry(c, x, y, s, rot){ c.save(); c.translate(x, y); c.rotate(rot); c.beginPath(); c.moveTo(0, s); c.bezierCurveTo(-s * 1.1, s * .2, -s * .8, -s * .8, 0, -s * .6); c.bezierCurveTo(s * .8, -s * .8, s * 1.1, s * .2, 0, s); var g = c.createRadialGradient(-s * .3, -s * .2, 1, 0, 0, s * 1.2); g.addColorStop(0, '#FF6B6B'); g.addColorStop(1, '#C8102E'); c.fillStyle = g; c.fill(); c.fillStyle = '#FFE08A'; for (var i = 0; i < 7; i++){ c.beginPath(); c.arc(Math.sin(i * 2.1) * s * .45, Math.cos(i * 1.7) * s * .45, 1.4, 0, Math.PI * 2); c.fill(); } c.fillStyle = '#3FA34D'; for (var j = 0; j < 5; j++){ c.save(); c.translate(0, -s * .62); c.rotate(-1.2 + j * .6); c.beginPath(); c.ellipse(0, -s * .2, s * .12, s * .3, 0, 0, Math.PI * 2); c.fill(); c.restore(); } c.restore(); }
+function blueberry(c, x, y, s){ var g = c.createRadialGradient(x - s * .3, y - s * .3, 1, x, y, s); g.addColorStop(0, '#6B79C9'); g.addColorStop(1, '#232A6B'); c.beginPath(); c.arc(x, y, s, 0, Math.PI * 2); c.fillStyle = g; c.fill(); c.beginPath(); c.arc(x, y - s * .1, s * .28, 0, Math.PI * 2); c.fillStyle = 'rgba(20,20,50,.7)'; c.fill(); }
+function panda(c, x, y, s){
+  c.save(); c.translate(x, y);
+  c.shadowColor = 'rgba(0,0,0,.25)'; c.shadowBlur = 8; c.shadowOffsetY = 4;
+  c.fillStyle = '#222'; [[-.72, -.7], [.72, -.7]].forEach(function(p){ c.beginPath(); c.arc(p[0] * s, p[1] * s, s * .38, 0, Math.PI * 2); c.fill(); });
+  c.beginPath(); c.arc(0, 0, s, 0, Math.PI * 2); c.fillStyle = '#fff'; c.fill(); c.shadowColor = 'transparent';
+  c.fillStyle = '#222'; [[-.38, -.08, .3], [.38, -.08, -.3]].forEach(function(p){ c.beginPath(); c.ellipse(p[0] * s, p[1] * s, s * .22, s * .3, p[2], 0, Math.PI * 2); c.fill(); });
+  c.fillStyle = '#fff'; [[-.36, -.12], [.36, -.12]].forEach(function(p){ c.beginPath(); c.arc(p[0] * s, p[1] * s, s * .08, 0, Math.PI * 2); c.fill(); });
+  c.fillStyle = '#222'; c.beginPath(); c.ellipse(0, s * .24, s * .13, s * .09, 0, 0, Math.PI * 2); c.fill();
+  c.fillStyle = 'rgba(255,120,170,.45)'; [[-.6, .3], [.6, .3]].forEach(function(p){ c.beginPath(); c.arc(p[0] * s, p[1] * s, s * .14, 0, Math.PI * 2); c.fill(); });
+  c.restore();
+}
+function candle(c, x, y){
+  c.save(); c.translate(x, y);
+  c.fillStyle = 'rgba(0,0,0,.12)'; c.beginPath(); c.ellipse(4, 34, 12, 5, 0, 0, Math.PI * 2); c.fill();
+  rr(c, -7, -26, 14, 60, 4); c.fillStyle = '#fff'; c.fill(); c.save(); c.clip();
+  c.strokeStyle = '#FF5FB4'; c.lineWidth = 4; for (var i = -40; i < 60; i += 12){ c.beginPath(); c.moveTo(-10, i); c.lineTo(10, i - 10); c.stroke(); } c.restore();
+  c.strokeStyle = '#333'; c.lineWidth = 2; c.beginPath(); c.moveTo(0, -26); c.lineTo(0, -32); c.stroke();
+  var g = c.createRadialGradient(0, -42, 1, 0, -42, 22); g.addColorStop(0, 'rgba(255,220,120,.9)'); g.addColorStop(1, 'rgba(255,200,80,0)'); c.fillStyle = g; c.beginPath(); c.arc(0, -42, 22, 0, Math.PI * 2); c.fill();
+  c.beginPath(); c.moveTo(0, -56); c.bezierCurveTo(8, -44, 6, -32, 0, -32); c.bezierCurveTo(-6, -32, -8, -44, 0, -56); c.fillStyle = '#FFB020'; c.fill();
+  c.beginPath(); c.moveTo(0, -49); c.bezierCurveTo(4, -42, 3, -35, 0, -35); c.bezierCurveTo(-3, -35, -4, -42, 0, -49); c.fillStyle = '#FFF3B0'; c.fill();
+  c.restore();
+}
+function drawBento(c, st, keepBg){
+  var cream = find(CREAMS, st.cream)[2], ink = find(INKS, st.ink)[2];
+  var X = 300, Y = 366, R = 168;
+  if (!keepBg) c.clearRect(0, 0, 600, 600);
+  // коробочка: крышка сзади и дно
+  c.save(); c.shadowColor = 'rgba(120,20,70,.22)'; c.shadowBlur = 24; c.shadowOffsetY = 10;
+  c.beginPath(); c.moveTo(70, 142); c.lineTo(104, 26); c.lineTo(496, 26); c.lineTo(530, 142); c.closePath(); c.fillStyle = '#FBF7F9'; c.fill(); c.restore();
+  c.strokeStyle = '#EAD8E1'; c.lineWidth = 2; c.beginPath(); c.moveTo(70, 142); c.lineTo(104, 26); c.lineTo(496, 26); c.lineTo(530, 142); c.stroke();
+  c.save(); c.translate(300, 84); c.rotate(-.08);
+  c.strokeStyle = 'rgba(42,91,180,.7)'; c.lineWidth = 3; c.beginPath(); c.arc(0, 0, 44, 0, Math.PI * 2); c.stroke(); c.lineWidth = 1.5; c.beginPath(); c.arc(0, 0, 37, 0, Math.PI * 2); c.stroke();
+  c.fillStyle = 'rgba(42,91,180,.85)'; c.textAlign = 'center'; c.font = '16px Pangolin, cursive'; c.fillText('Cake.Time', 0, 6); c.font = '10px Pangolin, cursive'; c.fillText('с любовью', 0, -14); c.fillText('♥', 0, 24); c.restore();
+  c.save(); c.shadowColor = 'rgba(120,20,70,.25)'; c.shadowBlur = 26; c.shadowOffsetY = 12; rr(c, 44, 138, 512, 446, 30); c.fillStyle = '#FFFFFF'; c.fill(); c.restore();
+  rr(c, 44, 138, 512, 446, 30); c.strokeStyle = '#EBD9E2'; c.lineWidth = 2; c.stroke();
+  rr(c, 66, 160, 468, 402, 20); c.fillStyle = '#F8EFF3'; c.fill();
+  // торт
+  c.save(); c.shadowColor = 'rgba(80,20,50,.28)'; c.shadowBlur = 22; c.shadowOffsetY = 10; c.beginPath(); c.arc(X, Y, R, 0, Math.PI * 2); c.fillStyle = cream; c.fill(); c.restore();
+  var g = c.createRadialGradient(X - 50, Y - 60, 10, X, Y, R); g.addColorStop(0, shade(cream, .35)); g.addColorStop(.75, cream); g.addColorStop(1, shade(cream, -.12));
+  c.beginPath(); c.arc(X, Y, R, 0, Math.PI * 2); c.fillStyle = g; c.fill();
+  // посыпка
+  if (st.decor.indexOf('sprinkles') >= 0){
+    var seed = 7, rnd = function(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    var cols = ['#FF5FB4', '#3A50DA', '#FFD34D', '#7ED9B4', '#FFFFFF', '#B07CFF'];
+    for (var i = 0; i < 70; i++){ var a = rnd() * Math.PI * 2, d = Math.sqrt(rnd()) * (R - 26); var px = X + Math.cos(a) * d, py = Y + Math.sin(a) * d; c.save(); c.translate(px, py); c.rotate(rnd() * Math.PI); rr(c, -5, -1.6, 10, 3.2, 1.6); c.fillStyle = cols[i % cols.length]; c.fill(); c.restore(); }
+  }
+  // бортик
+  var bc = ink === '#FFFFFF' ? '#FFFFFF' : shade(ink, .15);
+  if (st.border === 'shell'){
+    for (var k = 0; k < 30; k++){ var an = k / 30 * Math.PI * 2; c.save(); c.translate(X + Math.cos(an) * (R - 13), Y + Math.sin(an) * (R - 13)); c.rotate(an + Math.PI / 2); c.beginPath(); c.ellipse(0, 0, 15, 10, 0, 0, Math.PI * 2); c.fillStyle = bc; c.fill(); c.beginPath(); c.ellipse(-3, -3, 6, 3.5, 0, 0, Math.PI * 2); c.fillStyle = 'rgba(255,255,255,.45)'; c.fill(); c.restore(); }
+  } else if (st.border === 'pearl'){
+    for (var q = 0; q < 46; q++){ var aq = q / 46 * Math.PI * 2, x = X + Math.cos(aq) * (R - 11), y = Y + Math.sin(aq) * (R - 11); var pg = c.createRadialGradient(x - 2.5, y - 2.5, 1, x, y, 9); pg.addColorStop(0, '#fff'); pg.addColorStop(1, bc === '#FFFFFF' ? '#E6DCE2' : bc); c.beginPath(); c.arc(x, y, 9, 0, Math.PI * 2); c.fillStyle = pg; c.fill(); }
+  } else if (st.border === 'wave'){
+    c.beginPath(); for (var w = 0; w <= 360; w += 2){ var aw = w * Math.PI / 180, rw = R - 16 + Math.sin(aw * 18) * 6; var wx = X + Math.cos(aw) * rw, wy = Y + Math.sin(aw) * rw; if (w === 0) c.moveTo(wx, wy); else c.lineTo(wx, wy); }
+    c.closePath(); c.strokeStyle = bc; c.lineWidth = 9; c.lineJoin = 'round'; c.stroke(); c.strokeStyle = 'rgba(255,255,255,.35)'; c.lineWidth = 3; c.stroke();
+  }
+  // декор
+  if (st.decor.indexOf('hearts') >= 0){ [[20, 128], [72, 126], [108, 126], [158, 128], [205, 128], [250, 118], [292, 124], [338, 128]].forEach(function(p, i){ var a = p[0] * Math.PI / 180; heart(c, X + Math.cos(a) * p[1], Y + Math.sin(a) * p[1], 15 + (i % 3) * 3, i % 2 ? '#E8336F' : '#FF7FB5'); }); }
+  if (st.decor.indexOf('daisies') >= 0){ [[212, 122, 24], [238, 128, 18], [302, 128, 18], [328, 122, 24], [92, 128, 22], [118, 120, 16]].forEach(function(p){ var a = p[0] * Math.PI / 180; daisy(c, X + Math.cos(a) * p[1], Y + Math.sin(a) * p[1], p[2]); }); }
+  if (st.decor.indexOf('berries') >= 0){ strawberry(c, X + 84, Y + 66, 20, .4); strawberry(c, X + 50, Y + 94, 17, -.3); blueberry(c, X + 100, Y + 42, 9); blueberry(c, X + 84, Y + 96, 8); blueberry(c, X + 62, Y + 66, 7); blueberry(c, X + 108, Y + 72, 7.5); }
+  if (st.decor.indexOf('panda') >= 0) panda(c, X - 92, Y + 84, 30);
+  if (st.decor.indexOf('candle') >= 0) candle(c, X, Y - 112);
+  // надпись
+  var lines = [st.l1, st.l2].map(function(s){ return (s || '').trim(); }).filter(Boolean);
+  if (lines.length){
+    var maxW = lines.length > 1 ? 236 : 250, fs = 70;
+    c.font = '700 ' + fs + 'px Caveat, cursive';
+    while (fs > 30 && Math.max.apply(null, lines.map(function(s){ return c.measureText(s).width; })) > maxW){ fs -= 2; c.font = '700 ' + fs + 'px Caveat, cursive'; }
+    c.textAlign = 'center'; c.textBaseline = 'middle';
+    var lh = fs * .92, y0 = Y - (lines.length - 1) * lh / 2 + (st.decor.indexOf('candle') >= 0 ? 10 : 0);
+    lines.forEach(function(s, i){
+      c.save(); c.shadowColor = ink === '#FFFFFF' ? 'rgba(0,0,0,.28)' : 'rgba(255,255,255,.55)'; c.shadowBlur = 2; c.shadowOffsetY = 1.5;
+      c.fillStyle = ink; c.fillText(s, X, y0 + i * lh); c.restore();
+    });
+  }
+}
+function bentoPrice(){ return B.decor.indexOf('panda') >= 0 ? 2100 : 1800; }
+function bentoText(){
+  var occ = find(OCCASIONS, B.occ)[1], parts = [
+    'Здравствуйте! Хочу заказать бенто-торт.',
+    'Повод: ' + occ,
+    'Крем: ' + find(CREAMS, B.cream)[1].toLowerCase(),
+    'Надпись: «' + [B.l1, B.l2].filter(function(s){ return s && s.trim(); }).join(' / ') + '» — ' + find(INKS, B.ink)[1].toLowerCase(),
+    'Бортик: ' + find(BORDERS, B.border)[1].toLowerCase(),
+    'Декор: ' + (B.decor.length ? B.decor.map(function(k){ return find(DECOR, k)[1].toLowerCase(); }).join(', ') : 'без декора')
+  ];
+  if (B.date){ var p = B.date.split('-'); parts.push('К дате: ' + p[2] + '.' + p[1] + '.' + p[0]); }
+  parts.push('По меню на сайте — ' + bentoPrice() + ' ₽. Эскиз могу прислать картинкой.');
+  return parts.join('\n');
+}
+function setupCanvas(){ var dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = 600 * dpr; cv.height = 600 * dpr; cx2.setTransform(dpr, 0, 0, dpr, 0, 0); }
+function renderBento(){
+  drawBento(cx2, B);
+  $('#bentoSum').textContent = rub(bentoPrice());
+  $('#bentoSumNote').textContent = B.decor.indexOf('panda') >= 0 ? 'Бенто с фигуркой — как «Лев» в меню. Итог подтвердит кондитер.' : 'Бенто с надписью — цена из меню. Итог подтвердит кондитер.';
+  $('#bentoWa').href = wa(bentoText());
+}
+$('#bentoForm').addEventListener('change', function(e){
+  var t = e.target;
+  if (t.name === 'occ'){ B.occ = t.value; if (!B.touched){ var o = find(OCCASIONS, B.occ); B.l1 = o[2]; B.l2 = o[3]; $('#ins1').value = B.l1; $('#ins2').value = B.l2; } }
+  if (t.name === 'cream') B.cream = t.value;
+  if (t.name === 'ink') B.ink = t.value;
+  if (t.name === 'border') B.border = t.value;
+  if (t.name === 'decor') B.decor = $$('input[name=decor]:checked').map(function(x){ return x.value; });
+  if (t.id === 'bentoDate') B.date = t.value;
+  renderBento();
+});
+['#ins1', '#ins2'].forEach(function(id, i){ $(id).addEventListener('input', function(e){ B[i ? 'l2' : 'l1'] = e.target.value; B.touched = true; renderBento(); }); });
+$('#bentoPng').addEventListener('click', function(){
+  var W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H; var x = c.getContext('2d');
+  var bg = x.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#B91F60'); bg.addColorStop(1, '#860F3F'); x.fillStyle = bg; x.fillRect(0, 0, W, H);
+  var glow = x.createRadialGradient(W / 2, 560, 50, W / 2, 560, 560); glow.addColorStop(0, 'rgba(255,190,225,.35)'); glow.addColorStop(1, 'rgba(255,190,225,0)'); x.fillStyle = glow; x.fillRect(0, 0, W, H);
+  x.textAlign = 'center'; x.fillStyle = '#FFEAF5'; x.shadowColor = 'rgba(255,70,170,.9)'; x.shadowBlur = 24;
+  x.font = '200 64px Nunito, sans-serif'; x.fillText('ВРЕМЯ ДЛЯ ТОРТИКА', W / 2, 120); x.shadowBlur = 0;
+  x.font = '36px Pangolin, cursive'; x.fillStyle = '#FFD6EB'; x.fillText('Мой бенто-торт · ' + find(OCCASIONS, B.occ)[1].toLowerCase(), W / 2, 180);
+  x.save(); x.translate(W / 2 - 400, 220); x.scale(800 / 600, 800 / 600); drawBento(x, B, true); x.restore();
+  x.fillStyle = 'rgba(255,255,255,.12)'; rr(x, 70, 1060, W - 140, 150, 28); x.fill();
+  x.fillStyle = '#fff'; x.font = '800 40px Nunito, sans-serif'; x.fillText('Cake.Time · кофейня-кондитерская', W / 2, 1118);
+  x.font = '600 30px Nunito, sans-serif'; x.fillStyle = '#FFE3F0'; x.fillText('Одинцово, бул. Любы Новосёловой, 18 · +7 925 501-19-92', W / 2, 1170);
+  x.font = '700 24px Nunito, sans-serif'; x.fillStyle = 'rgba(255,255,255,.7)'; x.fillText('демо-эскиз · разработка сайта — Денис Стрепенюк, +7 977 393-80-33', W / 2, 1290);
+  x.save(); x.translate(W - 150, 330); x.rotate(.18); x.strokeStyle = 'rgba(255,255,255,.75)'; x.lineWidth = 4; rr(x, -130, -40, 260, 80, 12); x.stroke(); x.fillStyle = 'rgba(255,255,255,.85)'; x.font = '800 19px Nunito, sans-serif'; x.fillText('ДЕМО · Д. СТРЕПЕНЮК', 0, -4); x.font = '700 20px Nunito, sans-serif'; x.fillText(rub(bentoPrice()), 0, 26); x.restore();
+  c.toBlob(function(blob){ var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'bento-cake-time.png'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000); toast('Картинка сохранена — приложите её в чат'); }, 'image/png');
+});
+$('#bentoTg').addEventListener('click', function(){
+  var txt = bentoText();
+  var done = function(){ toast('Текст скопирован — вставьте его в чат'); window.open('https://t.me/+' + PHONE, '_blank', 'noopener'); };
+  if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, function(){ prompt('Скопируйте текст заказа:', txt); }); }
+  else prompt('Скопируйте текст заказа:', txt);
+});
+setupCanvas();
+renderBento();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(renderBento);
+addEventListener('resize', function(){ var d = Math.min(2, window.devicePixelRatio || 1); if (cv.width !== 600 * d){ setupCanvas(); renderBento(); } });
+
+/* ---------- торт: калькулятор ---------- */
+var CAKES = [['uni', 'Единорог', 2800, 1000], ['fire', 'Пылающий', 2800, 0], ['choc', 'Три шоколада', 2800, 0], ['own', 'По вашему эскизу', 2800, 0]];
+var cakeSel = 'uni';
+radios('#oCake', 'cake', CAKES, cakeSel);
+function renderCake(){
+  var n = +$('#guests').value, ck = find(CAKES, cakeSel);
+  var kg = Math.max(1, Math.ceil(n * 0.15 * 2) / 2), sum = kg * ck[2] + ck[3];
+  $('#guestsOut').textContent = n + ' ' + plural(n, 'гость', 'гостя', 'гостей');
+  $('#cakeKg').textContent = String(kg).replace('.', ',') + ' кг';
+  $('#cakeRub').textContent = (cakeSel === 'own' ? 'от ' : '≈ ') + rub(sum);
+  $('#cakeWa').href = wa('Здравствуйте! Хочу заказать торт «' + ck[1] + '» на ' + n + ' ' + plural(n, 'гостя', 'гостей', 'гостей') + ' — примерно ' + String(kg).replace('.', ',') + ' кг. По калькулятору на сайте — ' + (cakeSel === 'own' ? 'от ' : 'около ') + sum + ' ₽. Подскажите, пожалуйста, по начинкам и срокам.');
+}
+$('#guests').addEventListener('input', renderCake);
+$('#oCake').addEventListener('change', function(e){ cakeSel = e.target.value; renderCake(); });
+renderCake();
+
+/* ---------- лайтбокс ---------- */
+var lb = $('#lb'), lbImg = $('img', lb), lbCap = $('figcaption', lb), group = [], gi = 0, lastFocus = null;
+function big(src){ return src.replace(/-600\.webp$/, '-1200.webp'); }
+function show(i){ gi = (i + group.length) % group.length; var f = group[gi], im = $('img', f); lbImg.src = big(im.getAttribute('src')); lbImg.alt = im.alt; lbCap.textContent = f.getAttribute('data-cap') || im.alt; }
+$$('figure.ph[data-group]').forEach(function(f){
+  f.setAttribute('tabindex', '0'); f.setAttribute('role', 'button');
+  var open = function(){ group = $$('figure.ph[data-group="' + f.getAttribute('data-group') + '"]'); lastFocus = f; show(group.indexOf(f)); lb.classList.add('on'); $('.x', lb).focus(); };
+  f.addEventListener('click', open);
+  f.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+});
+function closeLb(){ lb.classList.remove('on'); lbImg.removeAttribute('src'); if (lastFocus) lastFocus.focus(); }
+$('.x', lb).addEventListener('click', closeLb);
+$('.pv', lb).addEventListener('click', function(){ show(gi - 1); });
+$('.nx', lb).addEventListener('click', function(){ show(gi + 1); });
+lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+addEventListener('keydown', function(e){ if (!lb.classList.contains('on')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') show(gi - 1); if (e.key === 'ArrowRight') show(gi + 1); });
+
+/* ---------- карта по клику ---------- */
+$('#mapBtn').addEventListener('click', function(){
+  var box = $('#mapBox'), f = document.createElement('iframe');
+  f.src = 'https://yandex.ru/map-widget/v1/?ll=37.259806%2C55.675399&z=17&pt=37.259806,55.675399,pm2rdl';
+  f.title = 'Cake.Time на Яндекс Картах'; f.loading = 'lazy'; f.allowFullscreen = true;
+  box.innerHTML = ''; box.appendChild(f);
+});
+})();
+</script>
+</body>
+</html>
