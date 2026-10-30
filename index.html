@@ -83,7 +83,17 @@ body.owner .owner-toggle .sw::after{transform:translateX(14px)}
 .nav a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 12px;border-radius:999px;color:var(--ink-2)}
 .nav a:hover{background:rgba(163,22,79,.07);color:var(--wall)}
 .hdr-call{display:inline-flex;align-items:center;gap:8px;background:var(--wall);color:#fff;text-decoration:none;font-weight:800;font-size:15px;padding:10px 16px;border-radius:999px;white-space:nowrap}
-@media (max-width:980px){.nav{display:none}.hdr-call{margin-left:auto}}
+.nav a.on{color:var(--wall);background:rgba(163,22,79,.07)}
+.secnav{display:none}
+[id]{scroll-margin-top:76px}
+@media (max-width:1100px){
+  .nav{display:none}.hdr-call{margin-left:auto}
+  [id]{scroll-margin-top:122px}
+  .secnav{display:flex;gap:6px;position:sticky;top:64px;z-index:49;overflow-x:auto;scrollbar-width:none;padding:9px 16px;background:rgba(246,243,246,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,16,51,.08)}
+  .secnav::-webkit-scrollbar{display:none}
+  .secnav a{flex:none;text-decoration:none;font-weight:800;font-size:14px;padding:8px 13px;border-radius:999px;background:#fff;color:var(--ink-2);box-shadow:inset 0 0 0 1.5px #E5DCE7;white-space:nowrap;transition:background .15s,color .15s}
+  .secnav a.on{background:var(--wall);color:#fff;box-shadow:none}
+}
 @media (max-width:420px){.hdr-call span{display:none}.hdr-call{padding:10px 12px}.logo small{display:none}}
 
 /* ---------- общие секции ---------- */
@@ -127,10 +137,17 @@ body.owner .owner-note{display:block}
   background:radial-gradient(ellipse 48% 58% at 26% 40%,rgba(255,96,172,.30),transparent 70%),radial-gradient(ellipse 55% 45% at 92% 0%,rgba(255,210,235,.10),transparent 70%),linear-gradient(160deg,#8A1A4E 0%,#6C1441 55%,#52102E 100%);
   box-shadow:0 30px 70px rgba(80,10,45,.22)}
 .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,5vw,72px);align-items:center}
-.neon{margin:0;text-align:center;font:200 clamp(44px,5.4vw,80px)/.98 var(--f-body);text-transform:uppercase;letter-spacing:.035em;color:#FFEAF5;
+.neon{margin:0;text-align:center;font:200 clamp(46px,6vw,86px)/1.02 var(--f-body);text-transform:uppercase;letter-spacing:.035em;color:#FFEAF5;
   text-shadow:0 0 2px #fff,0 0 10px rgba(255,140,205,.95),0 0 26px rgba(255,70,170,.85),0 0 60px rgba(255,40,150,.55)}
-.neon span{display:block}
-.neon .sm{font-size:.62em;line-height:1.15}
+.neon>span{display:block}
+.neon .sm{font-size:.55em;vertical-align:.1em}
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px auto 0;max-width:580px}
+.qa a{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:9px 12px;transition:background .15s,transform .15s}
+.qa a:hover{background:rgba(255,255,255,.17);transform:translateY(-1px)}
+.qa i{font-style:normal;font-size:22px;line-height:1;flex:none}
+.qa span{font-size:13px;line-height:1.2;color:#FFDDEB;font-weight:700}
+.qa b{display:block;font-size:15px;font-weight:800;color:#fff;margin-top:2px}
+@media (max-width:560px){.qa{grid-template-columns:1fr 1fr}}
 .neon-wrap{position:relative;padding:clamp(10px,2vw,22px) clamp(6px,1.4vw,18px)}
 @media (prefers-reduced-motion:no-preference){.neon{animation:flick 2.4s ease-out 1 both}}
 @keyframes flick{0%{opacity:.15}6%{opacity:.9}8%{opacity:.3}11%{opacity:1}14%{opacity:.55}18%,100%{opacity:1}}
@@ -402,6 +419,29 @@ body.owner .owner-note{display:block}
 .lb button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;display:grid;place-items:center}
 .lb .x{top:14px;right:14px}.lb .pv{left:14px;top:50%;margin-top:-24px}.lb .nx{right:14px;top:50%;margin-top:-24px}
 
+/* ---------- телефон: короче страница ---------- */
+.more{display:none}
+@media (max-width:900px){.frame .ph{aspect-ratio:4/3.3}}
+@media (max-width:920px){.reviews,.cakes{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){
+  .sec:not(.hero){padding:46px 0}
+  .sec-head{margin-bottom:24px}
+  .swipe{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-inline:-16px;padding:4px 16px 16px;scroll-padding-inline:16px}
+  .swipe::-webkit-scrollbar{display:none}
+  .swipe>*{flex:0 0 var(--sw,80%);scroll-snap-align:start;min-width:0}
+  .cake-gal.swipe{--sw:58%}
+  .cake-gal.swipe .ph{aspect-ratio:3/4;height:auto}
+  .menu-photos.swipe{--sw:42%;margin-inline:-4px;padding-inline:4px}
+  .own.swipe{--sw:84%;align-items:flex-start}
+  .quotes.swipe{--sw:82%}
+  .shelf.swipe{--sw:41%;margin:0 0 18px;padding:6px 2px 38px;gap:14px;background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.12)) left bottom/100% 10px no-repeat}
+  .shelf.swipe::after{display:none}
+  .fold:not(.open) .board-grid{max-height:430px;overflow:hidden;-webkit-mask:linear-gradient(#000 68%,transparent);mask:linear-gradient(#000 68%,transparent)}
+  .fold .more{display:block;margin:14px auto 0;border:0;background:var(--blush);color:var(--wall);font-weight:800;font-size:15px;border-radius:999px;padding:11px 20px}
+  .cup-stage{height:178px}
+  .cup{transform:scale(.74);transform-origin:50% 100%}
+}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -429,16 +469,19 @@ body.owner .owner-note{display:block}
       Cake.Time <small id="hdrTime">08:00</small>
     </a>
     <nav class="nav" aria-label="Разделы">
-      <a href="#menu">Меню</a><a href="#coffee">Кофе</a><a href="#case">Витрина</a><a href="#bento">Бенто</a><a href="#cakes">Торты</a><a href="#visit">Как найти</a>
+      <a href="#cakes">Торты</a><a href="#bento">Бенто</a><a href="#case">Витрина</a><a href="#coffee">Кофе</a><a href="#menu">Меню</a><a href="#own">Дети и собаки</a><a href="#visit">Как найти</a>
     </nav>
     <a class="hdr-call" href="tel:+79255011992"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span>+7 925 501-19-92</span></a>
   </div>
 </header>
+<nav class="secnav" id="secnav" aria-label="Разделы сайта">
+  <a href="#cakes">🎂 Торты</a><a href="#bento">🍱 Бенто</a><a href="#case">🧁 Витрина</a><a href="#coffee">☕ Кофе</a><a href="#menu">🍳 Меню</a><a href="#own">🐶 Дети и собаки</a><a href="#reviews">★ Отзывы</a><a href="#visit">📍 Адрес</a>
+</nav>
 
 <main id="top">
 
 <!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
-<section class="sec hero" aria-labelledby="h1">
+<section class="sec hero" id="hero" aria-labelledby="h1">
   <div class="wrap">
     <div class="owner-note"><span class="on-t">Режим владельца · как работает сайт</span>Сейчас у Cake.Time <b>нет своего сайта</b>: всё держится на карточке в Картах и группе ВК. Этот сайт отвечает на три вопроса гостя без звонка: <b>«вы открыты?», «сколько стоит?» и «как заказать торт?»</b> Каждая кнопка ведёт в ваш WhatsApp с готовым текстом заказа. Жёлтые заметки видите только вы, гости их не увидят.</div>
     <div class="hero-panel">
@@ -446,17 +489,23 @@ body.owner .owner-note{display:block}
     <div class="hero-grid">
       <div>
         <div class="neon-wrap">
-          <h1 class="neon" id="h1"><span>Время</span><span class="sm">для</span><span>кофе</span><span class="sm">и</span><span>тортика</span></h1>
+          <h1 class="neon" id="h1"><span>Время <span class="sm">для</span></span><span>кофе <span class="sm">и</span></span><span>тортика</span></h1>
         </div>
-        <p class="hero-sub"><b>Cake.Time</b> — розовая кофейня-кондитерская в Одинцово. Десерты ручной работы, бенто-торты, завтраки, паста и детская зона.</p>
+        <p class="hero-sub"><b>Cake.Time</b> — розовая кофейня-кондитерская в Одинцово: торты и бенто на заказ, десерты ручной работы, завтраки и обеды.</p>
         <div class="hero-chips">
-          <span class="chip">★ 5,0 · 1 236 оценок</span>
-          <span class="chip">Хорошее место 2026</span>
+          <span class="chip">★ 5,0 · Хорошее место 2026</span>
           <span class="chip">Бул. Любы Новосёловой, 18</span>
         </div>
+        <nav class="qa" aria-label="Быстрые ответы">
+          <a href="#cakes"><i aria-hidden="true">🎂</i><span>Торты на заказ<b>от 2 800 ₽/кг</b></span></a>
+          <a href="#bento"><i aria-hidden="true">🍱</i><span>Бенто-торт<b>от 1 800 ₽</b></span></a>
+          <a href="#coffee"><i aria-hidden="true">☕</i><span>Кофе с собой<b>от 160 ₽</b></span></a>
+          <a href="#dog"><i aria-hidden="true">🐶</i><span>С собакой<b>можно</b></span></a>
+          <a href="#kids"><i aria-hidden="true">🧸</i><span>Детская зона<b>есть</b></span></a>
+          <a href="#delivery"><i aria-hidden="true">🚚</i><span>Доставка<b>есть</b></span></a>
+        </nav>
         <div class="hero-cta">
           <a class="btn btn--neon" href="#bento">Собрать бенто-торт</a>
-          <a class="btn btn--white" href="#menu">Меню и цены</a>
           <a class="btn btn--ghost" href="https://yandex.ru/maps/?rtext=~55.675399,37.259806&amp;rtt=auto" target="_blank" rel="noopener">Маршрут</a>
         </div>
       </div>
@@ -488,166 +537,45 @@ body.owner .owner-note{display:block}
   </div>
 </section>
 
-<!-- ============ МЕНЮ ============ -->
-<section class="sec sec--alt" id="menu" aria-labelledby="h-menu">
+<!-- ============ ТОРТЫ ============ -->
+<section class="sec sec--alt" id="cakes" aria-labelledby="h-cakes">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="9:00"></i>Время завтракать, обедать и ужинать</div>
-      <h2 id="h-menu">Меню прямо с досок в зале</h2>
-      <p class="lead">Цены и названия — с досок, которые висят в зале: «Сырники-мячики», «Креветики-пистолетики» и вафли «Завхоз Дома культуры».</p>
+      <div class="kicker"><i class="tk" data-t="9:00"></i>Время для праздника</div>
+      <h2 id="h-cakes">Торты, о которых потом рассказывают</h2>
+      <p class="lead">Единороги, мишки, надписи из шоколада, ягоды и макарон сверху. Посчитайте, сколько торта нужно на ваших гостей, и отправьте заявку.</p>
     </div>
-    <div class="owner-note"><span class="on-t">Для владельца</span>На Яндекс Картах ваше меню помечено <b>«давно не обновлялось»</b>: там 10 позиций и капучино «от 150 ₽». Здесь меню с ваших досок, его легко обновлять. Человек, который увидел цену заранее, приходит уже решившим, что заказать.</div>
-    <div class="tabs" role="tablist" aria-label="Разделы меню">
-      <button class="tab" role="tab" id="t-br" aria-controls="p-br" aria-selected="true">Завтраки</button>
-      <button class="tab" role="tab" id="t-ln" aria-controls="p-ln" aria-selected="false" tabindex="-1">Обеды и ужины</button>
-      <button class="tab" role="tab" id="t-pz" aria-controls="p-pz" aria-selected="false" tabindex="-1">Пицца</button>
-    </div>
-
-    <div role="tabpanel" id="p-br" aria-labelledby="t-br">
-      <div class="board">
-        <h3>Завтракать в <em>@cake.time</em></h3>
-        <div class="board-grid">
-          <div class="mi"><div class="mi-row">Бенедикт с окороком<span class="dots"></span><span class="pr">620 ₽</span></div><p>Свежий круассан, два яйца пашот, голландез, творожный сыр, ломтики окорока.</p></div>
-          <div class="mi"><div class="mi-row">Бенедикт с лососем<span class="dots"></span><span class="pr">650 ₽</span></div><p>Круассан, пашот, голландез, авокадо, сливочный сыр и лосось собственного посола.</p></div>
-          <div class="mi"><div class="mi-row">Большой английский завтрак<span class="dots"></span><span class="pr">650 ₽</span></div><p>Колбаска на гриле, глазунья, окорок, шампиньоны, картофельный оладушек, фасоль, вяленые томаты, тёмный хлеб.</p></div>
-          <div class="mi"><div class="mi-row">Вафли «Завхоз Дома культуры»<span class="dots"></span><span class="pr">620 ₽</span></div><p>Несладкие вафли, глазунья, хамон, жареные шампиньоны, медово-горчичный соус.</p></div>
-          <div class="mi"><div class="mi-row">Сырники-мячики<span class="dots"></span><span class="pr">420 ₽</span></div><p>В хрустящей панировке из печенья, с вишнёвым вареньем и сметаной.</p></div>
-          <div class="mi"><div class="mi-row">Вафли «Лалалэнд»<span class="dots"></span><span class="pr">480 ₽</span></div><p>Сладкие, на выбор: сливочное мороженое с карамелью, шоколадное с Oreo или с клубничным топпингом.</p></div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Главный вопрос перед заказом торта — <b>«сколько брать и во сколько обойдётся»</b>. Калькулятор отвечает на него до звонка, и в WhatsApp приходит уже тёплый клиент с числом гостей и датой. Цена 2 800 ₽/кг и оформление «Единорога» 1 000 ₽ — из меню на Картах. Если цены изменились, поправим за минуту.</div>
+    <div class="cakes">
+      <div class="cake-gal swipe">
+        <figure class="ph" data-group="cakes" data-cap="Торт-единорог"><img src="img/cake-unicorn-600.webp" srcset="img/cake-unicorn-600.webp 600w, img/cake-unicorn-1200.webp 960w" sizes="(max-width:920px) 33vw, 240px" loading="lazy" alt="Торт-единорог с цветами из крема"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Двухъярусный торт с мишками"><img src="img/cake-teddy-600.webp" loading="lazy" alt="Двухъярусный торт с мишками"></figure>
+        <figure class="ph" data-group="cakes" data-cap="«Лучшему учителю» — надпись из шоколада"><img src="img/cake-teacher-600.webp" loading="lazy" alt="Торт с шоколадной надписью «Лучшему учителю»"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Торт с ягодами и макарон"><img src="img/cake-grey-600.webp" loading="lazy" alt="Серо-голубой торт с ягодами и макарон"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто «Маме» с ромашками"><img src="img/bento-daisies-600.webp" loading="lazy" alt="Голубой бенто-торт с ромашками и надписью «Маме»"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто с радугой и свечкой"><img src="img/bento-rainbow-600.webp" loading="lazy" alt="Яркий бенто-торт со свечой"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто-торты с рисунками"><img src="img/bento-boxes-600.webp" loading="lazy" alt="Бенто-торты в коробочках с рисунками"></figure>
+        <figure class="ph" data-group="cakes" data-cap="Бенто с надписью"><img src="img/bento-boar-600.webp" loading="lazy" alt="Синий бенто-торт с розовой надписью"></figure>
+      </div>
+      <div class="calc">
+        <h3>Сколько торта нужно?</h3>
+        <p style="margin:0;color:var(--ink-2);font-size:15px">Считаем примерно по 150 г на гостя, с шагом 0,5 кг. В меню торты указаны за 1 кг.</p>
+        <label class="lbl" for="guests"><span>Гостей</span><span id="guestsOut">12</span></label>
+        <input type="range" id="guests" min="4" max="40" value="12">
+        <div class="lbl" style="margin-top:14px">Какой торт</div>
+        <div class="opts" id="oCake"></div>
+        <div class="res-wrap">
+          <div class="res"><div><span>Вес</span><b id="cakeKg">2 кг</b></div><div><span>Примерно</span><b id="cakeRub">5 600 ₽</b></div></div>
+          <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
         </div>
-        <div class="menu-photos">
-          <figure class="ph" data-group="food" data-cap="Бенедикт на круассане"><img src="img/benedict-600.webp" loading="lazy" alt="Бенедикт на круассане с яйцом пашот"></figure>
-          <figure class="ph" data-group="food" data-cap="Английский завтрак"><img src="img/english-600.webp" loading="lazy" alt="Большой английский завтрак"></figure>
-          <figure class="ph" data-group="food" data-cap="Сырники"><img src="img/syrniki-600.webp" loading="lazy" alt="Сырники со сметаной"></figure>
-          <figure class="ph" data-group="food" data-cap="Латте с сердечком"><img src="img/latte-heart-600.webp" loading="lazy" alt="Латте с рисунком сердце"></figure>
-        </div>
+        <a class="btn btn--wa" id="cakeWa" href="#" target="_blank" rel="noopener">Обсудить торт в WhatsApp</a>
+        <ul class="price-list">
+          <li><span>Бенто-торт с надписью</span><b>1 800 ₽</b></li>
+          <li><span>Бенто «Лев», «Я беременна!»</span><b>2 100 ₽</b></li>
+          <li><span>Торт «Единорог»</span><b>2 800 ₽/кг + 1 000 ₽</b></li>
+          <li><span>Торты «Пылающий», «Три шоколада»</span><b>2 800 ₽/кг</b></li>
+        </ul>
       </div>
-    </div>
-
-    <div role="tabpanel" id="p-ln" aria-labelledby="t-ln" hidden>
-      <div class="board">
-        <h3>Обедать и ужинать в <em>@cake.time</em></h3>
-        <div class="board-grid">
-          <div class="board-sub">Паста</div>
-          <div class="mi"><div class="mi-row">Карбонара<span class="dots"></span><span class="pr">550 ₽</span></div><p>Спагетти в сливках с пармезаном и беконом.</p></div>
-          <div class="mi"><div class="mi-row">Сливочная с курицей<span class="dots"></span><span class="pr">550 ₽</span></div><p>Феттуччине в сливочном соусе с курицей, по желанию — с шампиньонами.</p></div>
-          <div class="mi"><div class="mi-row">Томатная<span class="dots"></span><span class="pr">520 ₽</span></div><p>Тортильони с томлёными томатами, пармезаном и базиликом.</p></div>
-          <div class="mi"><div class="mi-row">Детский набор<span class="badge">детям</span><span class="dots"></span><span class="pr">420 ₽</span></div><p>Макарошки с сыром и мини-сосисками, свежий огурец и помидорки.</p></div>
-          <div class="board-sub">Салаты</div>
-          <div class="mi"><div class="mi-row">«Богатенький Цезарь»<span class="dots"></span><span class="pr">420 ₽</span></div><p>Салат, курица, помидорки, пармезан и фирменный соус.</p></div>
-          <div class="mi"><div class="mi-row">«Креветики-пистолетики»<span class="dots"></span><span class="pr">480 ₽</span></div><p>Салат, креветки, помидорки, авокадо, страчателла, оливковое масло.</p></div>
-          <div class="board-sub">Супы</div>
-          <div class="mi"><div class="mi-row">Тыквенный крем-суп<span class="dots"></span><span class="pr">350 ₽</span></div><p>Со сливками или с чесночным маслом — на ваш выбор.</p></div>
-          <div class="mi"><div class="mi-row">Крем-суп из шампиньонов<span class="dots"></span><span class="pr">350 ₽</span></div><p>Со взбитой сливочной пенкой.</p></div>
-          <div class="mi"><div class="mi-row">Солянка<span class="dots"></span><span class="pr">380 ₽</span></div><p>На говяжьем бульоне, с томатами и колбасками.</p></div>
-          <div class="mi"><div class="mi-row">С макарошками<span class="badge">детям</span><span class="dots"></span><span class="pr">350 ₽</span></div><p>Куриный супчик с мини-макаронами и шпинатом.</p></div>
-          <div class="board-sub">К чаю и к компании</div>
-          <div class="mi"><div class="mi-row">Картошка фри<span class="dots"></span><span class="pr">270 ₽</span></div><p>С соусом на выбор.</p></div>
-          <div class="mi"><div class="mi-row">Сырные палочки<span class="dots"></span><span class="pr">480 ₽</span></div><p>Моцарелла в панировке, соус на выбор.</p></div>
-          <div class="mi"><div class="mi-row">Куриные стрипсы<span class="dots"></span><span class="pr">480 ₽</span></div><p>С соусом на выбор.</p></div>
-        </div>
-        <div class="menu-photos">
-          <figure class="ph" data-group="food" data-cap="Паста"><img src="img/pasta-600.webp" loading="lazy" alt="Паста в Cake.Time"></figure>
-          <figure class="ph" data-group="food" data-cap="Розовые столики у окна"><img src="img/pink-table-600.webp" loading="lazy" alt="Розовые столики у окна"></figure>
-          <figure class="ph" data-group="food" data-cap="Напитки на «меховом» столике"><img src="img/fur-drinks-600.webp" loading="lazy" alt="Напитки и пирожное на столике"></figure>
-          <figure class="ph" data-group="food" data-cap="Матча-латте"><img src="img/matcha-600.webp" loading="lazy" alt="Матча-латте"></figure>
-        </div>
-      </div>
-    </div>
-
-    <div role="tabpanel" id="p-pz" aria-labelledby="t-pz" hidden>
-      <div class="board">
-        <h3>Пицца от <em>@cake.time</em></h3>
-        <div class="board-grid">
-          <div class="mi"><div class="mi-row">Маргарита<span class="dots"></span><span class="pr">650 ₽</span></div><p>Томатный соус, моцарелла, томаты и орегано.</p></div>
-          <div class="mi"><div class="mi-row">Пепперони<span class="dots"></span><span class="pr">650 ₽</span></div><p>Классика: томатный соус, пепперони и моцарелла.</p></div>
-          <div class="mi"><div class="mi-row">Три сыра<span class="dots"></span><span class="pr">650 ₽</span></div><p>На сливочном соусе: моцарелла, чеддер и пармезан.</p></div>
-          <div class="mi"><div class="mi-row">С ветчиной и грибами<span class="dots"></span><span class="pr">650 ₽</span></div><p>На томатном или сливочном соусе, с моцареллой.</p></div>
-        </div>
-      </div>
-    </div>
-    <p class="board-note">Цены — по фотографиям меню в зале (Яндекс Карты, 2025–2026). Актуальность уточняйте по телефону <a href="tel:+79255011992">+7 925 501-19-92</a>.</p>
-  </div>
-</section>
-
-<!-- ============ КОФЕ ============ -->
-<section class="sec" id="coffee" aria-labelledby="h-coffee">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="8:15"></i>Время для кофе</div>
-      <h2 id="h-coffee">Соберите стакан и заберите без очереди</h2>
-      <p class="lead">Выберите напиток, объём и добавки. Сумма посчитается сама, а заказ уйдёт бариста в WhatsApp. Стаканы у Cake.Time голубые, с печатью «с любовью».</p>
-    </div>
-    <div class="owner-note"><span class="on-t">Для владельца</span>Это <b>предзаказ кофе с собой</b> через ваш WhatsApp. Гость пишет по дороге, а приходит к готовому стакану. Утром это дополнительные продажи тем, кто торопится и иначе прошёл бы мимо. Если предзаказы не нужны, кнопка просто станет «Позвонить».</div>
-    <div class="drinks">
-      <div class="board">
-        <h3>Напитки от <em>@cake.time</em></h3>
-        <div class="sizes" role="group" aria-label="Объём стакана">
-          <button class="size" type="button" data-size="250" aria-pressed="false">250 мл</button>
-          <button class="size" type="button" data-size="350" aria-pressed="true">350 мл</button>
-          <button class="size" type="button" data-size="450" aria-pressed="false">450 мл</button>
-        </div>
-        <table class="dtable" id="dtable">
-          <thead><tr><th scope="col">Напиток</th><th scope="col">250 мл</th><th scope="col">350 мл</th><th scope="col">450 мл</th></tr></thead>
-          <tbody></tbody>
-        </table>
-        <div class="board-sub" style="margin-top:20px">Дополнения</div>
-        <div class="extras" id="extras"></div>
-        <div class="menu-photos">
-          <figure class="ph" data-group="drinks" data-cap="Молочный коктейль в фирменном стакане"><img src="img/milkshake-600.webp" loading="lazy" alt="Молочный коктейль в розовом стакане Cake.Time"></figure>
-          <figure class="ph" data-group="drinks" data-cap="Кофе с маршмеллоу-фигурками"><img src="img/cups-marsh-600.webp" loading="lazy" alt="Два стакана кофе с маршмеллоу-фигурками"></figure>
-          <figure class="ph" data-group="drinks" data-cap="Голубой латте"><img src="img/blue-latte-600.webp" loading="lazy" alt="Голубой латте в кружке"></figure>
-          <figure class="ph" data-group="drinks" data-cap="Напиток со сливками и крендельками"><img src="img/pretzel-drink-600.webp" loading="lazy" alt="Напиток со взбитыми сливками и крендельками"></figure>
-        </div>
-      </div>
-      <aside class="cup-panel" aria-live="polite">
-        <div class="cup-stage"><div class="cup" id="cup"><div class="lid"></div><div class="body"></div><div class="stamp">с любовью<br>Cake.Time</div></div></div>
-        <div class="cup-name" id="cupName">Капучино</div>
-        <div class="cup-meta" id="cupMeta">350 мл</div>
-        <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
-        <div class="cup-total"><span id="cupTotal">240 ₽</span></div>
-        <div class="pickup"><label for="pickTime">Заберу</label><select id="pickTime"></select></div>
-        <a class="btn btn--wa" id="cupWa" href="#" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.3z"/></svg>Заказать с собой</a>
-        <p class="tiny">Сообщение откроется в WhatsApp кофейни. Бариста ответит и подтвердит заказ.</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ВИТРИНА ============ -->
-<section class="sec sec--alt" id="case" aria-labelledby="h-case">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="16:00"></i>Время для тортика</div>
-      <h2 id="h-case">Витрина, у которой разбегаются глаза</h2>
-      <p class="lead">Капкейки, макарон, муссовые зверята, клубника в шоколаде. Витрина часто меняется, поэтому ниже есть кнопка «что сейчас в наличии».</p>
-    </div>
-    <div class="owner-note"><span class="on-t">Для владельца</span>По отзывам, вы уже <b>продаёте доставку по фото витрины</b>: «консультант сделал фото десертов из наличия». Кнопка ниже делает это в один тап, и гостю не нужно искать ваш номер. Цены на ценниках взяты из вашего меню на Картах. Где цены нет, мы её не придумывали.</div>
-    <div class="case">
-      <div class="shelf">
-        <div class="item"><figure class="ph" data-group="case" data-cap="Тарталетка со свежими ягодами — 475 ₽"><img src="img/tartlet-600.webp" loading="lazy" alt="Тарталетка с ягодами"></figure><div class="tag">Тарталетка с ягодами<b>475 ₽</b></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Корзиночки из безе с ягодами"><img src="img/meringue-600.webp" loading="lazy" alt="Безе с кремом и ягодами"></figure><div class="tag">Безе с ягодами<i>Павлова — 420 ₽</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Муссовые пирожные-утята"><img src="img/mousse-duck-600.webp" loading="lazy" alt="Голубое муссовое пирожное с утёнком"></figure><div class="tag">Муссовые утята<i>с витрины</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Муссовый зайчик"><img src="img/mousse-bunny-600.webp" loading="lazy" alt="Муссовое пирожное в виде зайчика"></figure><div class="tag">Муссовый зайчик<i>с витрины</i></div></div>
-      </div>
-      <div class="shelf">
-        <div class="item"><figure class="ph" data-group="case" data-cap="Капкейки"><img src="img/cupcakes-600.webp" loading="lazy" alt="Розовые и голубые капкейки"></figure><div class="tag">Капкейки<i>розовые и голубые</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Клубника в шоколаде"><img src="img/strawberries-600.webp" loading="lazy" alt="Клубника в шоколаде"></figure><div class="tag">Клубника в шоколаде<i>к празднику</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Макарон в подарочных коробках"><img src="img/macarons-box-600.webp" loading="lazy" alt="Разноцветные макарон в коробках"></figure><div class="tag">Макарон<i>в коробках</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Красный бархат"><img src="img/red-velvet-600.webp" loading="lazy" alt="Пирожное красный бархат"></figure><div class="tag">Красный бархат<i>к кофе</i></div></div>
-      </div>
-      <div class="shelf">
-        <div class="item"><figure class="ph" data-group="case" data-cap="Пирожное-цветок"><img src="img/yellow-flower-600.webp" loading="lazy" alt="Жёлтое пирожное-цветок"></figure><div class="tag">Пирожное-цветок<i>с витрины</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Капкейки с Oreo"><img src="img/oreo-cupcakes-600.webp" loading="lazy" alt="Капкейки с печеньем Oreo"></figure><div class="tag">Капкейки с Oreo<i>с витрины</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Макарон с рисунками"><img src="img/macarons-print-600.webp" loading="lazy" alt="Макарон с напечатанными рисунками"></figure><div class="tag">Макарон с картинками<i>к празднику</i></div></div>
-        <div class="item"><figure class="ph" data-group="case" data-cap="Торт в подарочной коробке с шаром"><img src="img/cake-gift-600.webp" loading="lazy" alt="Торт в прозрачной подарочной коробке с воздушным шаром"></figure><div class="tag">Торт в подарочной коробке<i>с шаром</i></div></div>
-      </div>
-      <div style="padding:0 4px 22px;color:#FFE6F1;font-size:15px"><b style="color:#fff">Чизкейк на палочке «Эскимо» — 360 ₽.</b> Классический чизкейк в шоколаде, начинка на выбор:
-        <div class="eskimo"><span>кокос</span><span>фисташка</span><span>малина</span><span>клубника</span><span>манго</span><span>маракуйя</span></div>
-      </div>
-    </div>
-    <div class="case-cta">
-      <p><b>Хотите доставку?</b> Напишите — бариста пришлёт фото того, что сейчас на витрине, и упакует так, чтобы пирожные доехали целыми.</p>
-      <a class="btn btn--wa" href="https://wa.me/79255011992?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%D1%82%D0%B5,%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D1%84%D0%BE%D1%82%D0%BE%20%D0%B2%D0%B8%D1%82%D1%80%D0%B8%D0%BD%D1%8B%20%E2%80%94%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B." target="_blank" rel="noopener">Что сейчас на витрине?</a>
     </div>
   </div>
 </section>
@@ -656,7 +584,7 @@ body.owner .owner-note{display:block}
 <section class="sec sec--cobalt" id="bento" aria-labelledby="h-bento">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="18:30"></i>Время для подарка</div>
+      <div class="kicker"><i class="tk" data-t="10:30"></i>Время для подарка</div>
       <h2 id="h-bento">Нарисуйте свой бенто-торт</h2>
       <p class="lead">Маленький торт в коробочке, на 2–3 человек, с вашей надписью. Выберите цвет, бортик и декор. Эскиз уйдёт кондитеру в WhatsApp, а картинку можно сохранить себе.</p>
     </div>
@@ -690,46 +618,169 @@ body.owner .owner-note{display:block}
   </div>
 </section>
 
-<!-- ============ ТОРТЫ ============ -->
-<section class="sec" id="cakes" aria-labelledby="h-cakes">
+<!-- ============ ВИТРИНА ============ -->
+<section class="sec" id="case" aria-labelledby="h-case">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="19:00"></i>Время для праздника</div>
-      <h2 id="h-cakes">Торты, о которых потом рассказывают</h2>
-      <p class="lead">Единороги, мишки, надписи из шоколада, ягоды и макарон сверху. Посчитайте, сколько торта нужно на ваших гостей, и отправьте заявку.</p>
+      <div class="kicker"><i class="tk" data-t="12:00"></i>Время для тортика</div>
+      <h2 id="h-case">Витрина, у которой разбегаются глаза</h2>
+      <p class="lead">Капкейки, макарон, муссовые зверята, клубника в шоколаде. Витрина часто меняется, поэтому ниже есть кнопка «что сейчас в наличии».</p>
     </div>
-    <div class="owner-note"><span class="on-t">Для владельца</span>Главный вопрос перед заказом торта — <b>«сколько брать и во сколько обойдётся»</b>. Калькулятор отвечает на него до звонка, и в WhatsApp приходит уже тёплый клиент с числом гостей и датой. Цена 2 800 ₽/кг и оформление «Единорога» 1 000 ₽ — из меню на Картах. Если цены изменились, поправим за минуту.</div>
-    <div class="cakes">
-      <div class="cake-gal">
-        <figure class="ph" data-group="cakes" data-cap="Торт-единорог"><img src="img/cake-unicorn-600.webp" srcset="img/cake-unicorn-600.webp 600w, img/cake-unicorn-1200.webp 960w" sizes="(max-width:920px) 33vw, 240px" loading="lazy" alt="Торт-единорог с цветами из крема"></figure>
-        <figure class="ph" data-group="cakes" data-cap="Двухъярусный торт с мишками"><img src="img/cake-teddy-600.webp" loading="lazy" alt="Двухъярусный торт с мишками"></figure>
-        <figure class="ph" data-group="cakes" data-cap="«Лучшему учителю» — надпись из шоколада"><img src="img/cake-teacher-600.webp" loading="lazy" alt="Торт с шоколадной надписью «Лучшему учителю»"></figure>
-        <figure class="ph" data-group="cakes" data-cap="Торт с ягодами и макарон"><img src="img/cake-grey-600.webp" loading="lazy" alt="Серо-голубой торт с ягодами и макарон"></figure>
-        <figure class="ph" data-group="cakes" data-cap="Бенто «Маме» с ромашками"><img src="img/bento-daisies-600.webp" loading="lazy" alt="Голубой бенто-торт с ромашками и надписью «Маме»"></figure>
-        <figure class="ph" data-group="cakes" data-cap="Бенто с радугой и свечкой"><img src="img/bento-rainbow-600.webp" loading="lazy" alt="Яркий бенто-торт со свечой"></figure>
-        <figure class="ph" data-group="cakes" data-cap="Бенто-торты с рисунками"><img src="img/bento-boxes-600.webp" loading="lazy" alt="Бенто-торты в коробочках с рисунками"></figure>
-        <figure class="ph" data-group="cakes" data-cap="Бенто с надписью"><img src="img/bento-boar-600.webp" loading="lazy" alt="Синий бенто-торт с розовой надписью"></figure>
+    <div class="owner-note"><span class="on-t">Для владельца</span>По отзывам, вы уже <b>продаёте доставку по фото витрины</b>: «консультант сделал фото десертов из наличия». Кнопка ниже делает это в один тап, и гостю не нужно искать ваш номер. Цены на ценниках взяты из вашего меню на Картах. Где цены нет, мы её не придумывали.</div>
+    <div class="case">
+      <div class="shelf swipe">
+        <div class="item"><figure class="ph" data-group="case" data-cap="Тарталетка со свежими ягодами — 475 ₽"><img src="img/tartlet-600.webp" loading="lazy" alt="Тарталетка с ягодами"></figure><div class="tag">Тарталетка с ягодами<b>475 ₽</b></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Корзиночки из безе с ягодами"><img src="img/meringue-600.webp" loading="lazy" alt="Безе с кремом и ягодами"></figure><div class="tag">Безе с ягодами<i>Павлова — 420 ₽</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Муссовые пирожные-утята"><img src="img/mousse-duck-600.webp" loading="lazy" alt="Голубое муссовое пирожное с утёнком"></figure><div class="tag">Муссовые утята<i>с витрины</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Муссовый зайчик"><img src="img/mousse-bunny-600.webp" loading="lazy" alt="Муссовое пирожное в виде зайчика"></figure><div class="tag">Муссовый зайчик<i>с витрины</i></div></div>
       </div>
-      <div class="calc">
-        <h3>Сколько торта нужно?</h3>
-        <p style="margin:0;color:var(--ink-2);font-size:15px">Считаем примерно по 150 г на гостя, с шагом 0,5 кг. В меню торты указаны за 1 кг.</p>
-        <label class="lbl" for="guests"><span>Гостей</span><span id="guestsOut">12</span></label>
-        <input type="range" id="guests" min="4" max="40" value="12">
-        <div class="lbl" style="margin-top:14px">Какой торт</div>
-        <div class="opts" id="oCake"></div>
-        <div class="res-wrap">
-          <div class="res"><div><span>Вес</span><b id="cakeKg">2 кг</b></div><div><span>Примерно</span><b id="cakeRub">5 600 ₽</b></div></div>
-          <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
+      <div class="shelf swipe">
+        <div class="item"><figure class="ph" data-group="case" data-cap="Капкейки"><img src="img/cupcakes-600.webp" loading="lazy" alt="Розовые и голубые капкейки"></figure><div class="tag">Капкейки<i>розовые и голубые</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Клубника в шоколаде"><img src="img/strawberries-600.webp" loading="lazy" alt="Клубника в шоколаде"></figure><div class="tag">Клубника в шоколаде<i>к празднику</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Макарон в подарочных коробках"><img src="img/macarons-box-600.webp" loading="lazy" alt="Разноцветные макарон в коробках"></figure><div class="tag">Макарон<i>в коробках</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Красный бархат"><img src="img/red-velvet-600.webp" loading="lazy" alt="Пирожное красный бархат"></figure><div class="tag">Красный бархат<i>к кофе</i></div></div>
+      </div>
+      <div class="shelf swipe">
+        <div class="item"><figure class="ph" data-group="case" data-cap="Пирожное-цветок"><img src="img/yellow-flower-600.webp" loading="lazy" alt="Жёлтое пирожное-цветок"></figure><div class="tag">Пирожное-цветок<i>с витрины</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Капкейки с Oreo"><img src="img/oreo-cupcakes-600.webp" loading="lazy" alt="Капкейки с печеньем Oreo"></figure><div class="tag">Капкейки с Oreo<i>с витрины</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Макарон с рисунками"><img src="img/macarons-print-600.webp" loading="lazy" alt="Макарон с напечатанными рисунками"></figure><div class="tag">Макарон с картинками<i>к празднику</i></div></div>
+        <div class="item"><figure class="ph" data-group="case" data-cap="Торт в подарочной коробке с шаром"><img src="img/cake-gift-600.webp" loading="lazy" alt="Торт в прозрачной подарочной коробке с воздушным шаром"></figure><div class="tag">Торт в подарочной коробке<i>с шаром</i></div></div>
+      </div>
+      <div style="padding:0 4px 22px;color:#FFE6F1;font-size:15px"><b style="color:#fff">Чизкейк на палочке «Эскимо» — 360 ₽.</b> Классический чизкейк в шоколаде, начинка на выбор:
+        <div class="eskimo"><span>кокос</span><span>фисташка</span><span>малина</span><span>клубника</span><span>манго</span><span>маракуйя</span></div>
+      </div>
+    </div>
+    <div class="case-cta" id="delivery">
+      <p><b>Хотите доставку?</b> Напишите — бариста пришлёт фото того, что сейчас на витрине, и упакует так, чтобы пирожные доехали целыми.</p>
+      <a class="btn btn--wa" href="https://wa.me/79255011992?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%D1%82%D0%B5,%20%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0,%20%D1%84%D0%BE%D1%82%D0%BE%20%D0%B2%D0%B8%D1%82%D1%80%D0%B8%D0%BD%D1%8B%20%E2%80%94%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B4%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B." target="_blank" rel="noopener">Что сейчас на витрине?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОФЕ ============ -->
+<section class="sec sec--alt" id="coffee" aria-labelledby="h-coffee">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="13:30"></i>Время для кофе</div>
+      <h2 id="h-coffee">Соберите стакан и заберите без очереди</h2>
+      <p class="lead">Выберите напиток, объём и добавки. Сумма посчитается сама, а заказ уйдёт бариста в WhatsApp. Стаканы у Cake.Time голубые, с печатью «с любовью».</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>Это <b>предзаказ кофе с собой</b> через ваш WhatsApp. Гость пишет по дороге, а приходит к готовому стакану. Утром это дополнительные продажи тем, кто торопится и иначе прошёл бы мимо. Если предзаказы не нужны, кнопка просто станет «Позвонить».</div>
+    <div class="drinks">
+      <div class="board">
+        <h3>Напитки от <em>@cake.time</em></h3>
+        <div class="sizes" role="group" aria-label="Объём стакана">
+          <button class="size" type="button" data-size="250" aria-pressed="false">250 мл</button>
+          <button class="size" type="button" data-size="350" aria-pressed="true">350 мл</button>
+          <button class="size" type="button" data-size="450" aria-pressed="false">450 мл</button>
         </div>
-        <a class="btn btn--wa" id="cakeWa" href="#" target="_blank" rel="noopener">Обсудить торт в WhatsApp</a>
-        <ul class="price-list">
-          <li><span>Бенто-торт с надписью</span><b>1 800 ₽</b></li>
-          <li><span>Бенто «Лев», «Я беременна!»</span><b>2 100 ₽</b></li>
-          <li><span>Торт «Единорог»</span><b>2 800 ₽/кг + 1 000 ₽</b></li>
-          <li><span>Торты «Пылающий», «Три шоколада»</span><b>2 800 ₽/кг</b></li>
-        </ul>
+        <table class="dtable" id="dtable">
+          <thead><tr><th scope="col">Напиток</th><th scope="col">250 мл</th><th scope="col">350 мл</th><th scope="col">450 мл</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="board-sub" style="margin-top:20px">Дополнения</div>
+        <div class="extras" id="extras"></div>
+        <div class="menu-photos swipe">
+          <figure class="ph" data-group="drinks" data-cap="Молочный коктейль в фирменном стакане"><img src="img/milkshake-600.webp" loading="lazy" alt="Молочный коктейль в розовом стакане Cake.Time"></figure>
+          <figure class="ph" data-group="drinks" data-cap="Кофе с маршмеллоу-фигурками"><img src="img/cups-marsh-600.webp" loading="lazy" alt="Два стакана кофе с маршмеллоу-фигурками"></figure>
+          <figure class="ph" data-group="drinks" data-cap="Голубой латте"><img src="img/blue-latte-600.webp" loading="lazy" alt="Голубой латте в кружке"></figure>
+          <figure class="ph" data-group="drinks" data-cap="Напиток со сливками и крендельками"><img src="img/pretzel-drink-600.webp" loading="lazy" alt="Напиток со взбитыми сливками и крендельками"></figure>
+        </div>
+      </div>
+      <aside class="cup-panel" aria-live="polite">
+        <div class="cup-stage"><div class="cup" id="cup"><div class="lid"></div><div class="body"></div><div class="stamp">с любовью<br>Cake.Time</div></div></div>
+        <div class="cup-name" id="cupName">Капучино</div>
+        <div class="cup-meta" id="cupMeta">350 мл</div>
+        <span class="calc-stamp">демо-расчёт<br>Д. Стрепенюк</span>
+        <div class="cup-total"><span id="cupTotal">240 ₽</span></div>
+        <div class="pickup"><label for="pickTime">Заберу</label><select id="pickTime"></select></div>
+        <a class="btn btn--wa" id="cupWa" href="#" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.3z"/></svg>Заказать с собой</a>
+        <p class="tiny">Сообщение откроется в WhatsApp кофейни. Бариста ответит и подтвердит заказ.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ МЕНЮ ============ -->
+<section class="sec" id="menu" aria-labelledby="h-menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><i class="tk" data-t="15:00"></i>Время завтракать, обедать и ужинать</div>
+      <h2 id="h-menu">Меню прямо с досок в зале</h2>
+      <p class="lead">Цены и названия — с досок, которые висят в зале: «Сырники-мячики», «Креветики-пистолетики» и вафли «Завхоз Дома культуры».</p>
+    </div>
+    <div class="owner-note"><span class="on-t">Для владельца</span>На Яндекс Картах ваше меню помечено <b>«давно не обновлялось»</b>: там 10 позиций и капучино «от 150 ₽». Здесь меню с ваших досок, его легко обновлять. Человек, который увидел цену заранее, приходит уже решившим, что заказать.</div>
+    <div class="tabs" role="tablist" aria-label="Разделы меню">
+      <button class="tab" role="tab" id="t-br" aria-controls="p-br" aria-selected="true">Завтраки</button>
+      <button class="tab" role="tab" id="t-ln" aria-controls="p-ln" aria-selected="false" tabindex="-1">Обеды и ужины</button>
+      <button class="tab" role="tab" id="t-pz" aria-controls="p-pz" aria-selected="false" tabindex="-1">Пицца</button>
+    </div>
+
+    <div role="tabpanel" id="p-br" aria-labelledby="t-br">
+      <div class="board fold">
+        <h3>Завтракать в <em>@cake.time</em></h3>
+        <div class="board-grid">
+          <div class="mi"><div class="mi-row">Бенедикт с окороком<span class="dots"></span><span class="pr">620 ₽</span></div><p>Свежий круассан, два яйца пашот, голландез, творожный сыр, ломтики окорока.</p></div>
+          <div class="mi"><div class="mi-row">Бенедикт с лососем<span class="dots"></span><span class="pr">650 ₽</span></div><p>Круассан, пашот, голландез, авокадо, сливочный сыр и лосось собственного посола.</p></div>
+          <div class="mi"><div class="mi-row">Большой английский завтрак<span class="dots"></span><span class="pr">650 ₽</span></div><p>Колбаска на гриле, глазунья, окорок, шампиньоны, картофельный оладушек, фасоль, вяленые томаты, тёмный хлеб.</p></div>
+          <div class="mi"><div class="mi-row">Вафли «Завхоз Дома культуры»<span class="dots"></span><span class="pr">620 ₽</span></div><p>Несладкие вафли, глазунья, хамон, жареные шампиньоны, медово-горчичный соус.</p></div>
+          <div class="mi"><div class="mi-row">Сырники-мячики<span class="dots"></span><span class="pr">420 ₽</span></div><p>В хрустящей панировке из печенья, с вишнёвым вареньем и сметаной.</p></div>
+          <div class="mi"><div class="mi-row">Вафли «Лалалэнд»<span class="dots"></span><span class="pr">480 ₽</span></div><p>Сладкие, на выбор: сливочное мороженое с карамелью, шоколадное с Oreo или с клубничным топпингом.</p></div>
+        </div>
+        <button class="more" type="button" aria-expanded="false">Показать все завтраки</button>
+        <div class="menu-photos swipe">
+          <figure class="ph" data-group="food" data-cap="Бенедикт на круассане"><img src="img/benedict-600.webp" loading="lazy" alt="Бенедикт на круассане с яйцом пашот"></figure>
+          <figure class="ph" data-group="food" data-cap="Английский завтрак"><img src="img/english-600.webp" loading="lazy" alt="Большой английский завтрак"></figure>
+          <figure class="ph" data-group="food" data-cap="Сырники"><img src="img/syrniki-600.webp" loading="lazy" alt="Сырники со сметаной"></figure>
+          <figure class="ph" data-group="food" data-cap="Латте с сердечком"><img src="img/latte-heart-600.webp" loading="lazy" alt="Латте с рисунком сердце"></figure>
+        </div>
       </div>
     </div>
+
+    <div role="tabpanel" id="p-ln" aria-labelledby="t-ln" hidden>
+      <div class="board fold">
+        <h3>Обедать и ужинать в <em>@cake.time</em></h3>
+        <div class="board-grid">
+          <div class="board-sub">Паста</div>
+          <div class="mi"><div class="mi-row">Карбонара<span class="dots"></span><span class="pr">550 ₽</span></div><p>Спагетти в сливках с пармезаном и беконом.</p></div>
+          <div class="mi"><div class="mi-row">Сливочная с курицей<span class="dots"></span><span class="pr">550 ₽</span></div><p>Феттуччине в сливочном соусе с курицей, по желанию — с шампиньонами.</p></div>
+          <div class="mi"><div class="mi-row">Томатная<span class="dots"></span><span class="pr">520 ₽</span></div><p>Тортильони с томлёными томатами, пармезаном и базиликом.</p></div>
+          <div class="mi"><div class="mi-row">Детский набор<span class="badge">детям</span><span class="dots"></span><span class="pr">420 ₽</span></div><p>Макарошки с сыром и мини-сосисками, свежий огурец и помидорки.</p></div>
+          <div class="board-sub">Салаты</div>
+          <div class="mi"><div class="mi-row">«Богатенький Цезарь»<span class="dots"></span><span class="pr">420 ₽</span></div><p>Салат, курица, помидорки, пармезан и фирменный соус.</p></div>
+          <div class="mi"><div class="mi-row">«Креветики-пистолетики»<span class="dots"></span><span class="pr">480 ₽</span></div><p>Салат, креветки, помидорки, авокадо, страчателла, оливковое масло.</p></div>
+          <div class="board-sub">Супы</div>
+          <div class="mi"><div class="mi-row">Тыквенный крем-суп<span class="dots"></span><span class="pr">350 ₽</span></div><p>Со сливками или с чесночным маслом — на ваш выбор.</p></div>
+          <div class="mi"><div class="mi-row">Крем-суп из шампиньонов<span class="dots"></span><span class="pr">350 ₽</span></div><p>Со взбитой сливочной пенкой.</p></div>
+          <div class="mi"><div class="mi-row">Солянка<span class="dots"></span><span class="pr">380 ₽</span></div><p>На говяжьем бульоне, с томатами и колбасками.</p></div>
+          <div class="mi"><div class="mi-row">С макарошками<span class="badge">детям</span><span class="dots"></span><span class="pr">350 ₽</span></div><p>Куриный супчик с мини-макаронами и шпинатом.</p></div>
+          <div class="board-sub">К чаю и к компании</div>
+          <div class="mi"><div class="mi-row">Картошка фри<span class="dots"></span><span class="pr">270 ₽</span></div><p>С соусом на выбор.</p></div>
+          <div class="mi"><div class="mi-row">Сырные палочки<span class="dots"></span><span class="pr">480 ₽</span></div><p>Моцарелла в панировке, соус на выбор.</p></div>
+          <div class="mi"><div class="mi-row">Куриные стрипсы<span class="dots"></span><span class="pr">480 ₽</span></div><p>С соусом на выбор.</p></div>
+        </div>
+        <button class="more" type="button" aria-expanded="false">Показать всё меню</button>
+        <div class="menu-photos swipe">
+          <figure class="ph" data-group="food" data-cap="Паста"><img src="img/pasta-600.webp" loading="lazy" alt="Паста в Cake.Time"></figure>
+          <figure class="ph" data-group="food" data-cap="Розовые столики у окна"><img src="img/pink-table-600.webp" loading="lazy" alt="Розовые столики у окна"></figure>
+          <figure class="ph" data-group="food" data-cap="Напитки на «меховом» столике"><img src="img/fur-drinks-600.webp" loading="lazy" alt="Напитки и пирожное на столике"></figure>
+          <figure class="ph" data-group="food" data-cap="Матча-латте"><img src="img/matcha-600.webp" loading="lazy" alt="Матча-латте"></figure>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="p-pz" aria-labelledby="t-pz" hidden>
+      <div class="board">
+        <h3>Пицца от <em>@cake.time</em></h3>
+        <div class="board-grid">
+          <div class="mi"><div class="mi-row">Маргарита<span class="dots"></span><span class="pr">650 ₽</span></div><p>Томатный соус, моцарелла, томаты и орегано.</p></div>
+          <div class="mi"><div class="mi-row">Пепперони<span class="dots"></span><span class="pr">650 ₽</span></div><p>Классика: томатный соус, пепперони и моцарелла.</p></div>
+          <div class="mi"><div class="mi-row">Три сыра<span class="dots"></span><span class="pr">650 ₽</span></div><p>На сливочном соусе: моцарелла, чеддер и пармезан.</p></div>
+          <div class="mi"><div class="mi-row">С ветчиной и грибами<span class="dots"></span><span class="pr">650 ₽</span></div><p>На томатном или сливочном соусе, с моцареллой.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="board-note">Цены — по фотографиям меню в зале (Яндекс Карты, 2025–2026). Актуальность уточняйте по телефону <a href="tel:+79255011992">+7 925 501-19-92</a>.</p>
   </div>
 </section>
 
@@ -737,13 +788,13 @@ body.owner .owner-note{display:block}
 <section class="sec sec--alt" id="own" aria-labelledby="h-own">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="11:00"></i>Время для своих</div>
+      <div class="kicker"><i class="tk" data-t="17:00"></i>Время для своих</div>
       <h2 id="h-own">С детьми, с собакой, с подругами</h2>
       <p class="lead">Детская зона с бассейном из шариков, костюмами и игрушечной кухней, пока родители пьют кофе. Пускают с собаками, летом работает веранда с цветами.</p>
     </div>
     <div class="owner-note"><span class="on-t">Для владельца</span>Мамы ищут <b>«кафе с детской комнатой в Одинцово»</b>, и у вас она есть: о детях 95 отзывов, 90% положительных. Но без сайта этот поиск достаётся другим. Этот блок закрывает вопрос «а с ребёнком можно?» до того, как гость откроет Карты.</div>
-    <div class="own">
-      <article class="card card--wide">
+    <div class="own swipe">
+      <article class="card card--wide" id="kids">
         <div class="two">
           <figure class="ph" data-group="own" data-cap="Детская зона с шариками"><img src="img/kids-pit-600.webp" loading="lazy" alt="Детская зона с сухим бассейном"></figure>
           <div class="in">
@@ -759,7 +810,7 @@ body.owner .owner-note{display:block}
           </div>
         </div>
       </article>
-      <article class="card">
+      <article class="card" id="dog">
         <figure class="ph" data-group="own" data-cap="С собакой — можно"><img src="img/dog-600.webp" loading="lazy" alt="Шпиц в синем кресле кофейни"></figure>
         <div class="in"><h3>Можно с собакой</h3><p>Собакам здесь рады. Шпиц на фото — гость, и, судя по позе, ему всё понравилось.</p></div>
       </article>
@@ -783,7 +834,7 @@ body.owner .owner-note{display:block}
 <section class="sec" id="reviews" aria-labelledby="h-rev">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="20:00"></i>Время для отзывов</div>
+      <div class="kicker"><i class="tk" data-t="19:00"></i>Время для отзывов</div>
       <h2 id="h-rev">1 024 отзыва и средняя 5,0</h2>
       <p class="lead">Мы свели отзывы с Яндекс Карт в один чек: что гости отмечают чаще всего и как оценивают.</p>
     </div>
@@ -808,7 +859,7 @@ body.owner .owner-note{display:block}
         <div class="badge-gp"><i>★</i>Хорошее место 2026 · Яндекс Карты</div>
       </div>
       <div>
-        <div class="quotes">
+        <div class="quotes swipe">
           <blockquote class="q"><p>«Самая красивая кофейня в Одинцово, такой розовый рай для девочек»</p><footer>Анна · Яндекс Карты</footer></blockquote>
           <blockquote class="q"><p>«Не стесняйтесь спросить совета у сотрудников. Подают заказ быстро»</p><footer>Елизавета · Яндекс Карты</footer></blockquote>
           <blockquote class="q"><p>«Сервис 10/10… пирожные доехали в целости и сохранности!»</p><footer>Мария · о доставке</footer></blockquote>
@@ -828,7 +879,7 @@ body.owner .owner-note{display:block}
 <section class="sec sec--alt" id="visit" aria-labelledby="h-visit">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker"><i class="tk" data-t="21:00"></i>Время заглянуть</div>
+      <div class="kicker"><i class="tk" data-t="20:30"></i>Время заглянуть</div>
       <h2 id="h-visit">Ищите голубую вывеску «Кофейня»</h2>
     </div>
     <div class="owner-note"><span class="on-t">Для владельца</span>Все контакты кликабельны: звонок, WhatsApp, Telegram, MAX, ВК и маршрут в Яндекс Картах. Карта грузится только по клику, поэтому сайт открывается быстро даже на слабом мобильном интернете.</div>
@@ -1000,6 +1051,31 @@ tabs.forEach(function(t, i){
     if (k){ var n = tabs[(i + k + tabs.length) % tabs.length]; selectTab(n); n.focus(); e.preventDefault(); }
   });
 });
+
+/* ---------- меню на телефоне: свернуть / развернуть ---------- */
+$$('.fold .more').forEach(function(b){
+  var label = b.textContent;
+  b.addEventListener('click', function(){
+    var f = b.closest('.fold'), open = f.classList.toggle('open');
+    b.textContent = open ? 'Свернуть' : label; b.setAttribute('aria-expanded', open);
+    if (!open) f.scrollIntoView({ block: 'start' });
+  });
+});
+
+/* ---------- полоса разделов: подсветка текущего ---------- */
+var navLinks = $$('#secnav a, .nav a'), secnav = $('#secnav');
+if ('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(ents){
+    ents.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var href = '#' + en.target.id;
+      navLinks.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === href); });
+      var a = secnav.querySelector('a[href="' + href + '"]');
+      if (secnav.scrollWidth > secnav.clientWidth) secnav.scrollTo({ left: a ? a.offsetLeft - 16 : 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  $$('main > section[id]').forEach(function(s){ io.observe(s); });
+}
 
 /* ---------- кофе: собрать стакан ---------- */
 var DRINKS = [
